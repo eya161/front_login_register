@@ -1,0 +1,16 @@
+.login,
+.image {
+  min-height: 100vh;
+}
+.bg-image {
+  background-image: url('./del.jpeg');
+  background-size: cover;
+  background-position: center center;
+  /* style={{background: 'linear-gradient(to right,rgb(251, 253, 253),rgba(170, 225, 241, 0.788),rgba(152, 219, 240, 0.788),rgba(140, 226, 252, 0.788))'}} */
+}
+.bg-photo{
+    background-image: url('./1.jpeg');
+    background-size: cover;
+    background-position: center center;
+    /* background: rgb(176, 240, 248); */
+}
