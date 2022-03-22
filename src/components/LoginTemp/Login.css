@@ -10,7 +10,7 @@
 }
 .bg-photo{
     background-image: url('./1.jpeg');
-    background-size: cover;
+    background-size:cover;
     background-position: center center;
-    /* background: rgb(176, 240, 248); */
+    /* background: rgb(219, 248, 248); */
 }
