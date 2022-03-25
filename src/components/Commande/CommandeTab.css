@@ -1,0 +1,11 @@
+.horizontal-scrollable > .row {
+    overflow-x: auto;
+}
+  
+.horizontal-scrollable > .row > .col-xs-4 {
+    display: inline-block;
+    float: none;
+}
+body{
+    background: #eff5f8ad;
+}

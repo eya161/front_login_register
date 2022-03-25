@@ -7,7 +7,8 @@ import Button from 'react-bootstrap/Button'
 
 export default function Forum() {
     return (
-        <div className="maincontainer" style={{ background: 'linear-gradient(to right,rgb(219, 248, 248,0.788),rgba(170, 225, 241, 0.788),rgba(152, 219, 240, 0.788),rgba(140, 226, 252, 0.788))',  height: '100%', backgroundPosition:'center', backgroundRepeat: 'no-repeat',backgroundSize: 'cover'}} >
+        <div className="maincontainer" style={{ background: '#eff5f8ad',  height: '100%', backgroundPosition:'center', backgroundRepeat: 'no-repeat',backgroundSize: 'cover'}} >
+            {/* 'linear-gradient(to right,rgb(219, 248, 248,0.788),rgba(170, 225, 241, 0.788),rgba(152, 219, 240, 0.788),rgba(140, 226, 252, 0.788))' */}
             <div class="container" >
                 <br />
                 <br />
