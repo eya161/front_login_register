@@ -10,6 +10,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Profil from './components/Profil/Profil';
 import ProfilEdit from './components/Profil/ProfilEdit';
 import ProfilPWD from './components/Profil/ProfilPWD';
+import Client from './components/Client/Client';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/ProfilEdit" element={<ProfilEdit />} />
           <Route path="/ProfilPWD" element={<ProfilPWD />} />
           <Route path="/Login" element={<Login />} />
+          <Route path="/Client" element={<Client />} />
         </Routes>
         {/* <CommandeTab /> */}
         {/* <Login/> */}

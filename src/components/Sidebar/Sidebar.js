@@ -37,7 +37,7 @@ export default function Sidebar() {
             <NavLink tag={Link} to="/CommandeTab" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Administrateur</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="/Forum" activeClassName="activeClicked">
+            <NavLink tag={Link} to="/Client" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Client</CDBSidebarMenuItem>
             </NavLink>
             <NavLink tag={Link} to="CommandeTab" activeClassName="activeClicked">
