@@ -6,7 +6,10 @@ import product from './product.png';
 import Table from 'react-bootstrap/Table';
 import { MdNotifications } from 'react-icons/md';
 import { CgProfile } from 'react-icons/cg';
-import Dropdown from 'react-bootstrap/Dropdown'
+import Dropdown from 'react-bootstrap/Dropdown';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import { FaSearch } from "react-icons/fa";
 
 export default function Dashboard() {
     return (
@@ -32,23 +35,23 @@ export default function Dashboard() {
                                 </li>
                             </div>
                             <div class="col-lg-6" style={{ marginLeft: '-5px' }}>
-                            <li>
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ borderRadius: '30px', background: "linear-gradient(to right, rgb(57, 115, 133),rgb(45, 94, 109),rgb(29, 61, 71))", width: "85%" }}>
-                                        <CgProfile />
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="/Profil">Profil</Dropdown.Item>
-                                        <Dropdown.Item href="/Login">Logout</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </li>
+                                <li>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ borderRadius: '30px', background: "linear-gradient(to right, rgb(57, 115, 133),rgb(45, 94, 109),rgb(29, 61, 71))", width: "85%" }}>
+                                            <CgProfile />
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="/Profil">Profil</Dropdown.Item>
+                                            <Dropdown.Item href="/Login">Logout</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </li>
                             </div>
                         </div>
                     </ol>
                 </nav>
             </div>
-            <div class="row"  style={{ marginLeft: '100px' }}>
+            <div class="row" style={{ marginLeft: '100px' }}>
 
                 <div class="col-lg-1 mb-3 "></div>
                 <div class="col-lg-3 mb-3 ">
@@ -75,6 +78,29 @@ export default function Dashboard() {
                     </div>
                 </div>
             </div>
+            <br />
+            <Form>
+                <div class="row flex">
+                    <div class="col-lg-1 mb-4" style={{ marginLeft: '60px' }}></div>
+                    <div class="col-lg-4 mb-4">
+                        <Form.Group className="" controlId="date">
+                            <label style={{fontFamily:'bold', fontSize:'20px'}}>Date de début:</label>
+                            <Form.Control className="border" type="date" placeholder="jj/mm/aaaa" />
+                        </Form.Group>
+                    </div>
+                    <div class="col-lg-4 mb-4">
+                        <Form.Group className="" controlId="date">
+                            <label style={{fontFamily:'bold', fontSize:'20px'}}>Date de fin:</label>
+                            <Form.Control className="border" type="date" placeholder="jj/mm/aaaa" />
+                        </Form.Group>
+                    </div>
+                    <div class="col-lg-1 mb-4" style={{marginTop:'30px'}}>
+                        <Button variant="primary" type="submit" className="button">
+                            <FaSearch />
+                        </Button>
+                    </div>
+                </div>
+            </Form>
             <div >
                 <div class="row text-center">
                     <div class="col-xs-12 col-sm-6 col-xl-6 mb-3">
