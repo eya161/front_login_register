@@ -13,6 +13,7 @@ import ProfilPWD from './components/Profil/ProfilPWD';
 import Client from './components/Client/Client';
 import Produit from './components/Produit/Produit';
 import ProdForum from './components/Produit/ProdForum';
+import ClientForum from './components/Client/ClientForum';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/Client" element={<Client />} />
           <Route path="/Produit" element={<Produit />} />
           <Route path="/ProdForum" element={<ProdForum />} />
+          <Route path="/ClientForum" element={<ClientForum />} />
         </Routes>
         {/* <CommandeTab /> */}
         {/* <Login/> */}

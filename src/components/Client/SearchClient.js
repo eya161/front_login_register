@@ -70,7 +70,7 @@ export default function SearchClient() {
                     </div>
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3">
-                        <Button variant="primary" type="submit" className="button" href='/Forum'>
+                        <Button variant="primary" type="submit" className="button" href='/ClientForum'>
                             Ajouter un client
                         </Button>
                     </div>
