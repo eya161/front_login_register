@@ -45,7 +45,7 @@ export default function ClientForum() {
                                                         <Form.Check
                                                             type="switch"
                                                             id="custom-switch"
-                                                            style={{ backgroundColor: 'beige' }}
+                                                            style={{ backgroundColor: '#ece4f5d5' }}
                                                         />
                                                     </div>
                                                 </Form>

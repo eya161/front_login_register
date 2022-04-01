@@ -14,11 +14,10 @@ export default function Client() {
         <div >
             <br />
             <ProduitSearch />
-            <br />
             <div class="container horizontal-scrollable" >
                 <div class="row text-center">
-                    <Table striped bordered hover>
-                        <thead style={{ background: 'beige' }}>
+                    <Table striped bordered hover >
+                        <thead style={{ background: '#CBC0D3' }}>
                             <tr>
                                 <th>Référence</th>
                                 <th>Désignation</th>
