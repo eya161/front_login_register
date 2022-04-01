@@ -11,6 +11,8 @@ import Profil from './components/Profil/Profil';
 import ProfilEdit from './components/Profil/ProfilEdit';
 import ProfilPWD from './components/Profil/ProfilPWD';
 import Client from './components/Client/Client';
+import Produit from './components/Produit/Produit';
+import ProdForum from './components/Produit/ProdForum';
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/ProfilPWD" element={<ProfilPWD />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Client" element={<Client />} />
+          <Route path="/Produit" element={<Produit />} />
+          <Route path="/ProdForum" element={<ProdForum />} />
         </Routes>
         {/* <CommandeTab /> */}
         {/* <Login/> */}
