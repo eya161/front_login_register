@@ -20,6 +20,8 @@ import Pays from './Pays/Pays';
 import PaysForum from './Pays/PaysForum';
 import Admin from './components/Admin/Admin';
 import AdminForum from './components/Admin/AdminForum';
+import ForgetPWD from './ForgetPWD/ForgetPWD';
+import NewPWD from './ForgetPWD/NewPWD';
 
 function App() {
   return (
@@ -44,6 +46,8 @@ function App() {
           <Route path="/PaysForum" element={<PaysForum />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/AdminForum" element={<AdminForum />} />
+          <Route path="/ForgetPWD" element={<ForgetPWD />} />
+          <Route path="/NewPWD" element={<NewPWD />} />
         </Routes>
         {/* <CommandeTab /> */}
         {/* <Login/> */}

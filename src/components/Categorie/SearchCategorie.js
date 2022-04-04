@@ -17,7 +17,7 @@ export default function SearchCategorie() {
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Liste des catégories</li>
-                            <div class="col-lg-1" style={{ marginLeft: '710px' }}>
+                            <div class="col-lg-1" style={{ marginLeft: '690px' }}>
                                 <li>
                                     <Dropdown>
                                         <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ borderRadius: '30px', background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))", width: "59%" }}>

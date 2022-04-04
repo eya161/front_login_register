@@ -18,7 +18,7 @@ export default function Client() {
             <div class="container horizontal-scrollable" >
                 <div class="row text-center">
                     <Table striped bordered hover>
-                        <thead style={{ background: 'beige' }}>
+                        <thead style={{ background: '#CBC0D3' }}>
                             <tr>
                                 <th>Photo</th>
                                 <th>Information générales</th>

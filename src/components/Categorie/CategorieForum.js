@@ -11,7 +11,7 @@ export default function CategorieForum() {
                     <nav aria-label="breadcrumb" class="main-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
-                            <li class="breadcrumb-item"><a href="/Produit">Liste des catégories</a></li>
+                            <li class="breadcrumb-item"><a href="/Categorie">Liste des catégories</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Ajouter Catégorie</li>
                         </ol>
                     </nav>

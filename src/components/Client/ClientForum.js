@@ -243,7 +243,7 @@ export default function ClientForum() {
                     <div class="col-lg-1"></div>
                     <div class="col-md-10 mb-3"></div>
                     <div class="col-md-1 mb-3">
-                        <Button variant="primary" type="submit" className="button" href='/ProdForum'>
+                        <Button variant="primary" type="submit" className="button" href='/ProdForum' style={{ fontFamily: 'bold', fontSize: '19px', background: '#4A4E69' }}>
                             Enregistrer
                         </Button>
                     </div>
