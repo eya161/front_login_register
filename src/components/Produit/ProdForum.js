@@ -63,7 +63,7 @@ export default function ProdForum() {
                                         <input type="text" class="form-control" />
                                     </div>
                                     <div class="col-sm-4">
-                                        <label style={{ fontFamily: 'bold', color:'black', fontSize:'18px'  }}>Catégorie</label>
+                                        <label style={{ fontFamily: 'bold', color:'black', fontSize:'18px'  }}>Catégorie:</label>
                                         <Form.Select aria-label="Default select example">
                                             <option value="1"></option>
                                         </Form.Select>

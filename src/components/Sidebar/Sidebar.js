@@ -28,13 +28,13 @@ export default function Sidebar() {
             <NavLink tag={Link} to="/Produit" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Produits</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="/CommandeTab" activeClassName="activeClicked">
+            <NavLink tag={Link} to="/Categorie" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Catégories</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="/CommandeTab" activeClassName="activeClicked">
+            <NavLink tag={Link} to="/Pays" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Pays</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="/CommandeTab" activeClassName="activeClicked">
+            <NavLink tag={Link} to="/Admin" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Administrateur</CDBSidebarMenuItem>
             </NavLink>
             <NavLink tag={Link} to="/Client" activeClassName="activeClicked">

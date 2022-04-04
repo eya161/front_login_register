@@ -14,6 +14,12 @@ import Client from './components/Client/Client';
 import Produit from './components/Produit/Produit';
 import ProdForum from './components/Produit/ProdForum';
 import ClientForum from './components/Client/ClientForum';
+import Categorie from './components/Categorie/Categorie';
+import CategorieForum from './components/Categorie/CategorieForum';
+import Pays from './Pays/Pays';
+import PaysForum from './Pays/PaysForum';
+import Admin from './components/Admin/Admin';
+import AdminForum from './components/Admin/AdminForum';
 
 function App() {
   return (
@@ -32,6 +38,12 @@ function App() {
           <Route path="/Produit" element={<Produit />} />
           <Route path="/ProdForum" element={<ProdForum />} />
           <Route path="/ClientForum" element={<ClientForum />} />
+          <Route path="/Categorie" element={<Categorie />} />
+          <Route path="/CategorieForum" element={<CategorieForum />} />
+          <Route path="/Pays" element={<Pays />} />
+          <Route path="/PaysForum" element={<PaysForum />} />
+          <Route path="/Admin" element={<Admin />} />
+          <Route path="/AdminForum" element={<AdminForum />} />
         </Routes>
         {/* <CommandeTab /> */}
         {/* <Login/> */}
