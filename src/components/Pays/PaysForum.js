@@ -1,5 +1,5 @@
 import React from 'react';
-import '../components/Profil/ProfilEdit.css';
+import '../Profil/ProfilEdit.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 

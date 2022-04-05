@@ -16,12 +16,13 @@ import ProdForum from './components/Produit/ProdForum';
 import ClientForum from './components/Client/ClientForum';
 import Categorie from './components/Categorie/Categorie';
 import CategorieForum from './components/Categorie/CategorieForum';
-import Pays from './Pays/Pays';
-import PaysForum from './Pays/PaysForum';
 import Admin from './components/Admin/Admin';
 import AdminForum from './components/Admin/AdminForum';
-import ForgetPWD from './ForgetPWD/ForgetPWD';
-import NewPWD from './ForgetPWD/NewPWD';
+import Pays from './components/Pays/Pays';
+import PaysForum from './components/Pays/PaysForum';
+import ForgetPWD from './components/ForgetPWD/ForgetPWD';
+import NewPWD from './components/ForgetPWD/NewPWD';
+
 
 function App() {
   return (
@@ -48,11 +49,7 @@ function App() {
           <Route path="/AdminForum" element={<AdminForum />} />
           <Route path="/ForgetPWD" element={<ForgetPWD />} />
           <Route path="/NewPWD" element={<NewPWD />} />
-        </Routes>
-        {/* <CommandeTab /> */}
-        {/* <Login/> */}
-        {/* <Forum /> */}
-      
+        </Routes>      
     </Router>
   );
 }

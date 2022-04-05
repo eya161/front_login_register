@@ -1,5 +1,4 @@
 import React from 'react';
-import '../components/LoginTemp/Login.css';
 import './ForgetPWD.css';
 
 export default function ForgetPWD() {

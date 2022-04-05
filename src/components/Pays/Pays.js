@@ -4,7 +4,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { FcViewDetails } from "react-icons/fc";
-import '../components/Commande/CommandeTab.css';
+import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchPays from './SearchPays';
 
