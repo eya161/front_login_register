@@ -1,4 +1,4 @@
-* {
+/*{
     box-sizing: border-box;
     
     
@@ -35,8 +35,9 @@
   }
   .check{
     display:flex;
-    /* Cette valeur peut être changée dans l'exemple */
+    Cette valeur peut être changée dans l'exemple
     justify-content: space-evenly;
     padding-left: -5px;
-    /* background-Color:rgb(57, 115, 133); */
-  }
+    background-Color:rgb(57, 115, 133);
+  } 
+  */
