@@ -10,7 +10,6 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FaSearch } from "react-icons/fa";
-import Sidebar from '../Sidebar/Sidebar';
 
 export default function Dashboard() {
     return (
@@ -57,7 +56,7 @@ export default function Dashboard() {
                     <div class="col-lg-1 mb-3 "></div>
                     <div class="col-lg-3 mb-3 ">
                         <div class="content">
-                            <div class="content-overlay"></div> <img class="content-image" src={team} />
+                            <div class="content-overlay"></div> <img alt="users" class="content-image" src={team} />
                             <div class="content-details fadeIn-bottom">
                                 <h3 class="content-title" style={{ fontSize: '20px' }}>Utilisateurs</h3>
                             </div>
@@ -65,14 +64,14 @@ export default function Dashboard() {
                     </div>
                     <div class="col-lg-3 mb-3">
                         <div class="content">
-                            <div class="content-overlay"></div> <img class="content-image" src={order} />
+                            <div class="content-overlay"></div> <img alt="orders" class="content-image" src={order} />
                             <div class="content-details fadeIn-bottom">
                                 <h3 class="content-title" style={{ fontSize: '20px' }}>Commandes</h3>
                             </div></div>
                     </div>
                     <div class="col-lg-3 mb-3">
                         <div class="content">
-                            <div class="content-overlay"></div> <img class="content-image" src={product} />
+                            <div class="content-overlay"></div> <img alt="products" class="content-image" src={product} />
                             <div class="content-details fadeIn-bottom">
                                 <h3 class="content-title" style={{ fontSize: '20px' }}>Produits</h3>
                             </div>

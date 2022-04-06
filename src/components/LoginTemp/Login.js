@@ -1,9 +1,62 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { useState , useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './Login.css';
+import axios from 'axios';
+import Loading from '../Loading/Loading';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-export default function Login() {
+export default function Login({history}) {
+    const [username, setusername] = useState("")
+    const [password, setpassword] = useState("")
+    const [error, setError] = useState("")
+    const [loading, setloading] = useState("")
+
+    useEffect(() => {
+      
+    
+      return () => {
+        const userInfo  = localStorage.getItem("userInfo");
+
+        if(userInfo){
+            history.push("/Dashboard");
+        }
+      }
+    }, [history]);
+    
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const config = {
+                headers: {
+                    "content-type": "application/json"
+                }
+            }
+            setloading(true)
+            const { data } = await axios.post(
+                "http://127.0.0.1:8000/api/login",
+                {
+                    username,
+                    password
+                },
+                config
+            );
+
+            console.log(data);
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            setloading(false);
+            setError(false);
+        } catch (error) {
+            setError(error.response.data.message);
+            setloading(false);
+            setError(true);
+        }
+
+    }
+
     return (
         <div className="maincontainer" >
             <div class="container-fluid">
@@ -13,20 +66,43 @@ export default function Login() {
                         <div class="login d-flex align-items-center py-5">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-lg-10 col-xl-8 mx-auto" style={{marginTop:"-150px"}}>
+                                    <div class="col-lg-10 col-xl-8 mx-auto" style={{ marginTop: "-150px" }}>
                                         <h3 class="display-4">Welcome Back</h3>
                                         <hr />
-                                        <form>
+                                        {error && <ErrorMessage />}
+                                        {loading && <Loading />}
+                                        <form onSubmit={submitHandler}>
                                             <div class="mb-3">
-                                                <input id="inputEmail" type="email" placeholder="Email address or Username" required="" autofocus="" class="form-control rounded-pill border-0 shadow-sm px-4" />
+                                                <input
+                                                    id="inputEmail"
+                                                    type="username"
+                                                    placeholder="Email address or Username"
+                                                    required
+                                                    autofocus=""
+                                                    class="form-control rounded-pill border-0 shadow-sm px-4"
+                                                    value={username}
+                                                    onChange={(e) => setusername(e.target.value)}
+                                                />
                                             </div>
                                             <div class="mb-3">
-                                                <input id="inputPassword" type="password" placeholder="Password" required="" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" />
+                                                <input
+                                                    id="inputPassword"
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    required
+                                                    class="form-control rounded-pill border-0 shadow-sm px-4 text-primary"
+                                                    value={password}
+                                                    onChange={(e) => setpassword(e.target.value)}
+                                                />
                                             </div>
                                             <div class="row">
                                                 <div class=" col-sm-6 form-check mb-2">
-                                                    <input id="customCheck1" type="checkbox" class="form-check-input" />
-                                                    <label for="customCheck1" class="form-check-label" style={{ float: 'left' }}>Remember password</label>
+                                                    <input
+                                                        id="customCheck1"
+                                                        type="checkbox"
+                                                        class="form-check-input"
+                                                    />
+                                                    <label class="form-check-label" style={{ float: 'left' }}>Remember password</label>
                                                 </div>
                                                 <div class="col-sm-2"></div>
                                                 <div class="col-sm-4 mb-2">

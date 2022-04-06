@@ -1,18 +1,29 @@
 import React from 'react';
+import {useEffect, useState} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Table from 'react-bootstrap/Table';
-// import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FcViewDetails } from "react-icons/fc";
-// import { FaSearch } from "react-icons/fa";
 import Search from './Search';
 import './CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
-// import Forum from '../Forum/Forum';
+import axios from "axios";
 
 export default function CommandeTab() {
+
+    const [commandes, setCommandes] = useState([])
+
+    const fetchCommandes = async() =>{
+        const {data}=await axios.get('/getall')
+        setCommandes(data)
+    };
+    console.log(commandes)
+    useEffect(() => {
+      fetchCommandes();
+    }, [])
+    
     return (
         <div >
             <br />

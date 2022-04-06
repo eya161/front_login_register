@@ -1,5 +1,5 @@
 import React from 'react';
-import './ForgetPWD.css';
+// import './ForgetPWD.css';
 
 export default function ForgetPWD() {
     return (

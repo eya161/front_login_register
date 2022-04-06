@@ -9,7 +9,7 @@ import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import ProduitSearch from './ProduitSearch';
 
-export default function Client() {
+export default function Produit() {
     return (
         <div >
             <br />

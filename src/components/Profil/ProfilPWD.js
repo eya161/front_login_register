@@ -91,7 +91,7 @@ export default function ProfilPWD() {
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="#">Save Changes</a>
+                                        <a class="btn btn-info" href="/Profil">Save Changes</a>
                                     </div>
                                 </div>
                             </div>
