@@ -100,6 +100,7 @@ export default function () {
                                             <td>{item.createdAt}</td>
                                             <td>
                                                 <Button variant="primary" type="details"  >
+                                                    
                                                     <FcViewDetails />
                                                 </Button>
                                             </td>
