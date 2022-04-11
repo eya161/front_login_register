@@ -8,10 +8,12 @@ import { FcViewDetails } from "react-icons/fc";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchClient from './SearchClient';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Client() {
     return (
         <div >
+            <Sidebar />
             <br />
             <SearchClient />
             <br />

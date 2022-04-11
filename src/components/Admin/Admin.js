@@ -8,10 +8,12 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchAdmin from './SearchAdmin';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Admin() {
     return (
         <div >
+            <Sidebar />
             <br />
             <SearchAdmin />
             <div class="container horizontal-scrollable" >

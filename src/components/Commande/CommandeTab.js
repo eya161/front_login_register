@@ -10,6 +10,7 @@ import Search from './Search';
 import './CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import axios from "axios";
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function CommandeTab() {
 
@@ -26,6 +27,7 @@ export default function CommandeTab() {
     
     return (
         <div >
+            <Sidebar />
             <br />
                 <Search />
             <br />

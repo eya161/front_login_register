@@ -4,6 +4,9 @@ import '../Profil/ProfilEdit.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import axios from 'axios';
+import Loading from '../Loading/Loading';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function ClientForum() {
     const [photo, setPhoto] = useState("");
@@ -30,24 +33,65 @@ export default function ClientForum() {
     const [username, setusername] = useState("");
     const [password1, setpassword1] = useState("");
     const [password2, setpassword2] = useState("");
-    const [comment, setcomment] = useState("");
+    // const [comment, setcomment] = useState("");
     const [port, setport] = useState("");
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const [loading, setloading] = useState("")
     
-    const submitHandler = (e) =>{
+    const submitHandler = async (e) =>{
         e.preventDefault();
         if(password1 !== password2){
-           setMessage('Password do not match')
+            setpassword1("");
+            setpassword2("");
+            return setError("Password do not match")
+        }else{
+            setMessage(null)
+            try{
+                const config = {
+                    headers: {
+                        "content-type":"application/json",
+                    },
+                };
+                setloading(true);
+
+                const {data} = await axios.post("http://127.0.0.1:8000/registerAdmin",
+                {
+                    username,
+                    password1,
+                    email,
+                    code,
+                    phone,
+                    fax,
+                    postal1,
+                    postal2,
+                    address,
+                    address1,
+                    address11,
+                    address2,
+                    address22,
+                    ville1,
+                    ville2,
+                    groupement, 
+                    contact,
+                    RSLivraison
+                }, config);
+            }catch(error){
+                setError(error.response.data.message);
+            }
         }
+        // try{
+        //     const{data}= await axios.post("http://127.0.0.1:8000/registerAdmin",{username,password1})
+        // }
         console.log(username,password1,password2)
        
     }
     return (
+        <>
+        <Sidebar />
         <div class="container">
             <div class="main-body">
                 <div class="row" >
-                    {error && <ErrorMessage variant="danger">mot de passe incorrecte</ErrorMessage>}
                     <nav aria-label="breadcrumb" class="main-breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
@@ -58,6 +102,7 @@ export default function ClientForum() {
                     <br />
                     <br />
                     <br />
+                    {loading && <Loading />}
                     <Form onSubmit={submitHandler} >
                     <div class="col-lg-12">
                         <div class="card">
@@ -337,6 +382,7 @@ export default function ClientForum() {
                             <div class="card-body">
                             <div class="row mb-3">
                                     <h6 class="mb-4 text-center" style={{ fontFamily: 'bold', fontSize: '30px', color:'black'}}>Paramétre</h6>
+                                    {error && <ErrorMessage />}
                                     <div class="col-sm-3">
                                         <h6 class="mb-0" style={{ fontFamily: 'bold', color:'black', fontSize:'18px' }}>Username:</h6>
                                     </div>
@@ -394,8 +440,8 @@ export default function ClientForum() {
                                         <Form.Control 
                                             as="textarea" 
                                             rows={3} 
-                                            value={comment}
-                                            onChange={(e)=> setcomment(e.target.value)}    
+                                            // value={comment}
+                                            // onChange={(e)=> setcomment(e.target.value)}    
                                         />
                                     </Form.Group>
                             </div>
@@ -408,8 +454,8 @@ export default function ClientForum() {
                                             type="text" 
                                             class="form-control" 
                                             required=''
-                                            value={port}
-                                            onChange={(e)=> setport(e.target.value)}    
+                                            // value={port}
+                                            // onChange={(e)=> setport(e.target.value)}    
                                         />
                                     </div>
                                 </div>
@@ -427,5 +473,6 @@ export default function ClientForum() {
                 </div>
             </div>
         </div >
+        </>
     )
 }

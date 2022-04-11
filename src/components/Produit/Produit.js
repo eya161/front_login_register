@@ -8,10 +8,12 @@ import { FcViewDetails } from "react-icons/fc";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import ProduitSearch from './ProduitSearch';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Produit() {
     return (
         <div >
+            <Sidebar />
             <br />
             <ProduitSearch />
             <div class="container horizontal-scrollable" >

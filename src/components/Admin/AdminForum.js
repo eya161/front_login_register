@@ -2,10 +2,13 @@ import React from 'react';
 import '../Profil/ProfilEdit.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
+import Sidebar from '../Sidebar/Sidebar';
 
 
 export default function AdminForum() {
     return (
+        <>
+        <Sidebar />
         <div class="container">
             <div class="main-body">
                 <div class="row">
@@ -102,5 +105,6 @@ export default function AdminForum() {
                 </div>
             </div>
         </div >
+    </>
     )
 }

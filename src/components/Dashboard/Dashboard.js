@@ -10,9 +10,16 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FaSearch } from "react-icons/fa";
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Dashboard() {
     return (
+        <div class="main">
+        <div class="row">
+            <div class="col-sm-2">
+        <Sidebar /></div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-9">
         <div class="container">
             <div class="main-body">
                 <div class="row">
@@ -150,7 +157,8 @@ export default function Dashboard() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div></div>
         </div>
+        </div></div>
     )
 }

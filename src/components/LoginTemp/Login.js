@@ -1,5 +1,5 @@
-import React from 'react';
-import { useState , useEffect } from 'react';
+import React ,{useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import './Login.css';
@@ -7,25 +7,12 @@ import axios from 'axios';
 import Loading from '../Loading/Loading';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-export default function Login({history}) {
+export default function Login() {
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
     const [error, setError] = useState("")
     const [loading, setloading] = useState("")
-
-    useEffect(() => {
-      
-    
-      return () => {
-        const userInfo  = localStorage.getItem("userInfo");
-
-        if(userInfo){
-            history.push("/Dashboard");
-        }
-      }
-    }, [history]);
-    
-
+    const history = useNavigate();
     const submitHandler = async (e) => {
         e.preventDefault();
 
@@ -37,7 +24,7 @@ export default function Login({history}) {
             }
             setloading(true)
             const { data } = await axios.post(
-                "http://127.0.0.1:8000/api/login",
+                "http://127.0.0.1:8000/api/admin/login",
                 {
                     username,
                     password
@@ -46,6 +33,7 @@ export default function Login({history}) {
             );
 
             console.log(data);
+            history("/Dashboard")
             localStorage.setItem("userInfo", JSON.stringify(data));
             setloading(false);
             setError(false);

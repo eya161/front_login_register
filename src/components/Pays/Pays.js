@@ -7,10 +7,12 @@ import { FcViewDetails } from "react-icons/fc";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchPays from './SearchPays';
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function Pays() {
   return (
     <div >
+        <Sidebar />
     <br />
     <SearchPays />
     <div class="container horizontal-scrollable" >

@@ -2,6 +2,17 @@ import React from 'react'
 import { Spinner } from 'react-bootstrap';
 
 export default function Loading({size=100}) {
+    // useEffect(() => {
+      
+    
+    //     return () => {
+    //       const userInfo  = localStorage.getItem("userInfo");
+  
+    //       if(userInfo){
+    //           history.push("/Dashboard")
+    //       }
+    //     }
+    //   }, [history]);
     return (
         <div
             style={{

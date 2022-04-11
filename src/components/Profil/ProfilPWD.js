@@ -1,9 +1,12 @@
 import React from 'react';
 import './ProfilEdit.css';
 import avatar from './profile.png'
+import Sidebar from '../Sidebar/Sidebar';
 
 export default function ProfilPWD() {
     return (
+        <>
+        <Sidebar />
         <div class="container">
             <div class="main-body">
                 <div class="row">
@@ -100,5 +103,6 @@ export default function ProfilPWD() {
                 </div>
             </div>
         </div>
+        </>
     )
 }
