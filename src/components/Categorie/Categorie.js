@@ -99,7 +99,7 @@ export default function () {
                                             <td>Admin </td>
                                             <td>{item.createdAt}</td>
                                             <td>
-                                                <Button variant="primary" type="details"  >
+                                                <Button variant="primary" type="details" href='/UpdateCategorie'  >
                                                     
                                                     <FcViewDetails />
                                                 </Button>

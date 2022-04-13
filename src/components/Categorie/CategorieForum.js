@@ -11,7 +11,7 @@ import Loading from '../Loading/Loading';
 
 export default function CategorieForum() {
     const [titre, settitre] = useState("")
-    const [statut, setstatut] = useState(true)
+    const [statut, setstatut] = useState(0)
     const [error, setError] = useState("")
     const [loading, setloading] = useState("")
     const submitHandler = async (e) =>{
@@ -90,11 +90,12 @@ export default function CategorieForum() {
                                         <Form.Select 
                                             aria-label="Default select example"
                                             required 
-                                            value={statut}
-                                            onChange={(e)=> setstatut(e.target.value)}    
+                                            onChange={(e)=> setstatut(parseInt(e.target.value))}  
+                                            
                                         >
-                                            <option value="1">Activé</option>
-                                            <option value="2">Désactivé</option>
+                                            {console.log('satus',typeof(statut))}
+                                            <option value='0'>Activé</option>
+                                            <option value='1'>Désactivé</option>
                                         </Form.Select>
                                     </div>
                                 </div>

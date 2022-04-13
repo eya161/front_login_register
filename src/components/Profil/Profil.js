@@ -80,14 +80,13 @@ export default function Profil() {
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank" href="/ProfilEdit">Edit</a>
+                                        <a class="btn btn-info " target="__blank">Edit</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         </>

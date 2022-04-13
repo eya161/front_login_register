@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Table from 'react-bootstrap/Table';
@@ -8,8 +9,33 @@ import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchPays from './SearchPays';
 import Sidebar from '../Sidebar/Sidebar';
+import axios from 'axios';
 
 export default function Pays() {
+    const [pays, setpays] = useState([])
+    const getPaysData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+          //  console.log(userInfo);
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                "http://127.0.0.1:8000/api/pays",config
+            );
+            console.log(data.data);
+            setpays(data.data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    useEffect(() => {
+        getPaysData();
+      //  handleDelete();
+    }, []);
   return (
     <div >
         <Sidebar />
@@ -29,18 +55,24 @@ export default function Pays() {
                     </tr>
                 </thead>
                 <tbody>
+                {pays
+                    .map((item) => {
+                     return (
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{item.label}</td>
+                        <td>{item.code}</td>
+                        <td>{item.statut}</td>
+                        <td>Admin</td>
+                        <td>{item.createdAt}</td>
                         <td>
                             <Button variant="primary" type="details"  >
                                 <FcViewDetails />
                             </Button>
                         </td>
                     </tr>
+                     );
+                    })
+                }
                 </tbody>
             </Table>
         </div>

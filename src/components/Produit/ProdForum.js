@@ -55,8 +55,7 @@ export default function ProdForum() {
                 setloading(false);
                 setError(true);
             }
-    const [reference, setreference] = useState("")
-    console.log(statut,designation,reference,description,prix_achat,frais_port,nb_carnet_paquet,nb_liasse_carnet,quantite);
+            console.log(statut,designation,reference,description,prix_achat,frais_port,nb_carnet_paquet,nb_liasse_carnet,quantite);
         }
     return (
         <>

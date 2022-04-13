@@ -20,6 +20,7 @@ import Pays from './components/Pays/Pays';
 import PaysForum from './components/Pays/PaysForum';
 import ForgetPWD from './components/ForgetPWD/ForgetPWD';
 import NewPWD from './components/ForgetPWD/NewPWD';
+import UpdateCategorie from './components/Categorie/UpdateCategorie';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
           <Route path="/AdminForum" element={<AdminForum />} />
           <Route path="/ForgetPWD" element={<ForgetPWD />} />
           <Route path="/NewPWD" element={<NewPWD />} />
+          <Route path="/UpdateCategorie" element={<UpdateCategorie />} />
         </Routes>      
     </Router>
   );

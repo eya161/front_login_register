@@ -48,7 +48,7 @@ export default function Login() {
     return (
         <div className="maincontainer" >
             <div class="container-fluid">
-                <div class="row no-gutter">
+                <div class="row no-gutter" style={{marginTop:"-20px"}}>
                     <div class="col-md-6 d-none d-md-flex bg-image"></div>
                     <div class="col-md-6 bg-photo" >
                         <div class="login d-flex align-items-center py-5">
