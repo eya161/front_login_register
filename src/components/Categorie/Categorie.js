@@ -6,6 +6,8 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FcViewDetails } from "react-icons/fc";
+import { BsCheckCircle } from "react-icons/bs";
+import { ImBlocked } from "react-icons/im";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchCategorie from './SearchCategorie';
@@ -61,6 +63,7 @@ export default function () {
             `http://127.0.0.1:8000/api/categories/${id}`,config
         )
         console.log(data)
+        window.location.reload()
        // let user = value.user.filter((item) => item.id != id);
     }
 
@@ -74,7 +77,6 @@ export default function () {
     return (
         <div >
             <Sidebar />
-            <br />
             <SearchCategorie />
             <div class="container horizontal-scrollable" >
                 <div class="row text-center">
@@ -92,6 +94,12 @@ export default function () {
                         <tbody>
                             {category
                                 .map((item) => {
+                                    if (item.statut === 0) {
+                                        item.statut=<BsCheckCircle style={{color:'green'}}></BsCheckCircle>
+                                    }else{
+                                        if(item.statut===1){
+                                        item.statut=<ImBlocked style={{color:'red'}}></ImBlocked>}
+                                    }
                                     return (
                                         <tr key={item.id}>
                                             <td>{item.titre}</td>

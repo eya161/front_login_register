@@ -95,7 +95,7 @@ export default function CategorieForum() {
                                         >
                                             {console.log('satus',typeof(statut))}
                                             <option value='0'>Activé</option>
-                                            <option value='1'>Désactivé</option>
+                                            <option value='1'>Bloqué</option>
                                         </Form.Select>
                                     </div>
                                 </div>
