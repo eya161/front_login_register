@@ -50,12 +50,10 @@ export default function Produit() {
         )
         console.log(data)
         window.location.reload()
-        // let user = value.user.filter((item) => item.id != id);
     }
 
     useEffect(() => {
         getProduitData();
-        //  handleDelete();
     }, []);
     return (
         <div >
@@ -103,7 +101,7 @@ export default function Produit() {
                                                 </Button>
                                             </td>
                                             <td>
-                                                <Button variant="danger" type="delete" style={{ marginLeft: '25px' }}>
+                                                <Button variant="danger" type="delete" style={{ marginLeft: '25px' }} onClick={()=>deleteData(item.id)}>
                                                     <RiDeleteBin5Line />
                                                 </Button>
                                             </td>
