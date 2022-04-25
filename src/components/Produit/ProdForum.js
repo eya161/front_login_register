@@ -9,7 +9,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
 
 export default function ProdForum() {
-    const [statut, setstatut] = useState(true)
+    const [statut, setstatut] = useState(0)
     const [designation, setdesignation] = useState("")
     const [reference, setreference] = useState("")
     const [description, setdescription] = useState("")
@@ -20,43 +20,50 @@ export default function ProdForum() {
     const [quantite, setquantite] = useState(0)
     const [error, setError] = useState("")
     const [loading, setloading] = useState("")
-    const submitHandler = async (e) =>{
-        e.preventDefault();
-            try{
-                const userInfo =localStorage.getItem("userInfo");
-                console.log(userInfo);
-                const config = {
-                    headers: {
-                        'Authorization': 'Bearer '+userInfo.slice(10,userInfo.length-2)
-                    },
-                };
-                console.log(config);
-                setloading(true);
-
-                const {data} = await axios.post("http://127.0.0.1:8000/api/produits",
-                {
-                   statut,
-                   designation,
-                   reference,
-                   description,
-                   prix_achat,
-                   frais_port,
-                   nb_carnet_paquet,
-                   nb_liasse_carnet,
-                   quantite,
-                }, 
-                config
-            ); 
-            console.log(data);
-            setloading(false);
-            setError(false);
-            }catch(error){
-                setError(error.response.data.message);
+        const submitHandler = async (e) =>{
+            e.preventDefault();
+                try{
+                    const userInfo =localStorage.getItem("userInfo");
+                    const config = {
+                        headers: {
+                            "Content-type": "application/json",
+                            'Authorization': 'Bearer '+userInfo.slice(10,userInfo.length-2)
+                        },
+                    };
+                    console.log(config);
+                    setloading(true);
+    
+                    const {data} = await axios.post("http://127.0.0.1:8000/api/produits",
+                    {
+                        statut,
+                        designation,
+                        reference,
+                        description,
+                        prix_achat,
+                        frais_port,
+                        nb_carnet_paquet,
+                        nb_liasse_carnet,
+                        quantite
+                    }, 
+                    config
+                );
                 setloading(false);
-                setError(true);
+                setError(false);
+                }catch(error){
+                    setError(error.response.data.message);
+                    setloading(false);
+                    setError(true);
+                }
+                console.log(statut,
+                    designation,
+                    reference,
+                    description,
+                    prix_achat,
+                    frais_port,
+                    nb_carnet_paquet,
+                    nb_liasse_carnet,
+                    quantite);
             }
-            console.log(statut,designation,reference,description,prix_achat,frais_port,nb_carnet_paquet,nb_liasse_carnet,quantite);
-        }
     return (
         <>
         <Sidebar />
@@ -104,8 +111,7 @@ export default function ProdForum() {
                                                             type="switch"
                                                             id="custom-switch"
                                                             style={{ backgroundColor: '#ece4f5d5' }}
-                                                            required 
-                                                            value={statut}
+                                                            value={0}
                                                             onChange={(e)=> setstatut(e.target.value)}
                                                         />
                                                     </div>

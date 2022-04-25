@@ -1,4 +1,5 @@
 import React from 'react';
+import {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import Table from 'react-bootstrap/Table';
@@ -9,8 +10,53 @@ import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import ProduitSearch from './ProduitSearch';
 import Sidebar from '../Sidebar/Sidebar';
+import { useNavigate } from 'react-router-dom';
+import { BsCheckCircle } from "react-icons/bs";
+import { ImBlocked } from "react-icons/im";
+import axios from 'axios';
 
 export default function Produit() {
+    const [produits, setproduits] = useState([])
+    const navigate = useNavigate();
+    const getProduitData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+            //  console.log(userInfo);
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                "http://127.0.0.1:8000/api/produits", config
+            );
+            console.log(data.data);
+            setproduits(data.data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const deleteData = async (id) => {
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        let data = await axios.delete(
+            `http://127.0.0.1:8000/api/produits/${id}`, config
+        )
+        console.log(data)
+        window.location.reload()
+        // let user = value.user.filter((item) => item.id != id);
+    }
+
+    useEffect(() => {
+        getProduitData();
+        //  handleDelete();
+    }, []);
     return (
         <div >
             <Sidebar />
@@ -33,25 +79,38 @@ export default function Produit() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td>
-                                    <Button variant="primary" type="details"  >
-                                        <FcViewDetails />
-                                    </Button>
-                                </td>
-                                <td>
-                                    <Button variant="danger" type="delete" style={{ marginLeft: '25px' }}>
-                                        <RiDeleteBin5Line />
-                                    </Button>
-                                </td>
-                            </tr>
+                            {produits
+                                .map((item) => {
+                                    if (item.statut === 0) {
+                                        item.statut = <BsCheckCircle style={{ color: 'green' }}></BsCheckCircle>
+                                    } else {
+                                        if (item.statut === 1) {
+                                            item.statut = <ImBlocked style={{ color: 'red' }}></ImBlocked>
+                                        }
+                                    }
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.reference}</td>
+                                            <td>{item.designation}</td>
+                                            <td>{item.description}</td>
+                                            <td></td>
+                                            <td>{item.statut}</td>
+                                            <td>Admin</td>
+                                            <td>{item.createdAt}</td>
+                                            <td>
+                                                <Button variant="primary" type="details"  >
+                                                    <FcViewDetails />
+                                                </Button>
+                                            </td>
+                                            <td>
+                                                <Button variant="danger" type="delete" style={{ marginLeft: '25px' }}>
+                                                    <RiDeleteBin5Line />
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    );
+                                })
+                            }
                         </tbody>
                     </Table>
                 </div>
