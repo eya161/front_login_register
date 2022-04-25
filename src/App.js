@@ -21,6 +21,7 @@ import PaysForum from './components/Pays/PaysForum';
 import ForgetPWD from './components/ForgetPWD/ForgetPWD';
 import NewPWD from './components/ForgetPWD/NewPWD';
 import UpdateCategorie from './components/Categorie/UpdateCategorie';
+import UpdatePays from './components/Pays/UpdatePays';
 
 
 function App() {
@@ -48,6 +49,7 @@ function App() {
           <Route path="/ForgetPWD" element={<ForgetPWD />} />
           <Route path="/NewPWD" element={<NewPWD />} />
           <Route path="/UpdateCategorie/:id" element={<UpdateCategorie />} />
+          <Route path="/UpdatePays/:id" element={<UpdatePays />} />
         </Routes>      
     </Router>
   );

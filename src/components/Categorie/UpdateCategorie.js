@@ -93,7 +93,7 @@ export default function UpdateCategorie() {
             // console.log(res.data)
             // setcategory(res.data)
         })
-        navigate.put('/Categorie');
+        navigate('/Categorie');
     }
 
     return (

@@ -12,9 +12,11 @@ import Pagination from 'react-bootstrap/Pagination';
 import SearchPays from './SearchPays';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export default function Pays() {
     const [pays, setpays] = useState([])
+    const navigate = useNavigate();
     const getPaysData = async () => {
         try {
             const userInfo = localStorage.getItem("userInfo");
@@ -34,6 +36,18 @@ export default function Pays() {
             console.log(e);
         }
     };
+
+    const editCountry=async(id) => {
+        console.log(id);
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        navigate(`/UpdatePays/${id}`);
+    }
+
     useEffect(() => {
         getPaysData();
       //  handleDelete();
@@ -73,7 +87,7 @@ export default function Pays() {
                         <td>Admin</td>
                         <td>{item.createdAt}</td>
                         <td>
-                            <Button variant="primary" type="details"  >
+                            <Button variant="primary" type="details" onClick={ () => editCountry(item.id)} >
                                 <FcViewDetails />
                             </Button>
                         </td>
