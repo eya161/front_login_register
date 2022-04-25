@@ -9,44 +9,44 @@ import Loading from '../Loading/Loading';
 import axios from 'axios';
 
 export default function PaysForum() {
-    const [label, setlabel] = useState("");
-    const [code, setcode] = useState("");
-    const [statut, setstatut] = useState(true);
+    const [label, setlabel] = useState("")
+    const [code, setcode] = useState("")
+    const [statut, setstatut] = useState(0)
     const [error, setError] = useState("")
     const [loading, setloading] = useState("")
-    const submitHandler = async (e) => {
+    const submitHandler = async (e) =>{
         e.preventDefault();
-        try {
-            const userInfo = localStorage.getItem("userInfo");
-            console.log(userInfo);
-            console.log("gffgfggf", userInfo.slice(10, userInfo.length - 2));
+            try{
+                const userInfo =localStorage.getItem("userInfo");
+                console.log(userInfo);
+                console.log("gffgfggf",userInfo.slice(10,userInfo.length-2));
 
-            const config = {
-                headers: {
-                    "Content-type": "application/json",
-                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-                },
-            };
-            console.log(config);
-            setloading(true);
+                const config = {
+                    headers: {
+                        "Content-type": "application/json",
+                        'Authorization': 'Bearer '+userInfo.slice(10,userInfo.length-2)
+                    },
+                };
+                console.log(config);
+                setloading(true);
 
-            const { data } = await axios.post("http://127.0.0.1:8000/api/pays",
+                const {data} = await axios.post("http://127.0.0.1:8000/api/pays",
                 {
-                    code,
-                    label,
-                    statut,
-                },
+                   label,
+                   code,
+                   statut,
+                }, 
                 config
             );
             setloading(false);
             setError(false);
-        } catch (error) {
-            setError(error.response.data.message);
-            setloading(false);
-            setError(true);
+            }catch(error){
+                setError(error.response.data.message);
+                setloading(false);
+                setError(true);
+            }
+            console.log(label,code,statut);
         }
-        console.log(label,code, statut);
-    }
 
     return (
         <>
@@ -104,10 +104,11 @@ export default function PaysForum() {
                                                 <Form.Select 
                                                     aria-label="Default select example"
                                                     required
-                                                    value={statut}
-                                                    onChange={(e)=> setstatut(e.target.value)} >
-                                                    <option value="1">Activé</option>
-                                                    <option value="2">Désactivé</option>
+                                                    onChange={(e)=> setstatut(parseInt(e.target.value))}
+                                                    >
+                                                        {console.log('satut',typeof(statut))}
+                                                        <option value='0'>Activé</option>
+                                                        <option value='1'>Bloqué</option>
                                                 </Form.Select>
                                             </div>
                                         </div>

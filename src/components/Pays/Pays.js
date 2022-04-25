@@ -5,6 +5,8 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { FcViewDetails } from "react-icons/fc";
+import { BsCheckCircle } from "react-icons/bs";
+import { ImBlocked } from "react-icons/im";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchPays from './SearchPays';
@@ -57,6 +59,12 @@ export default function Pays() {
                 <tbody>
                 {pays
                     .map((item) => {
+                        if (item.statut === 0) {
+                            item.statut=<BsCheckCircle style={{color:'green'}}></BsCheckCircle>
+                        }else{
+                            if(item.statut===1){
+                            item.statut=<ImBlocked style={{color:'red'}}></ImBlocked>}
+                        }
                      return (
                     <tr>
                         <td>{item.label}</td>

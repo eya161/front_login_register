@@ -13,10 +13,11 @@ import Pagination from 'react-bootstrap/Pagination';
 import SearchCategorie from './SearchCategorie';
 import Sidebar from '../Sidebar/Sidebar';
 import axios, { Axios } from 'axios';
-import { config } from '@fortawesome/fontawesome-svg-core';
+import { useNavigate } from 'react-router-dom';
 
 export default function () {
     const [category, setcategory] = useState([])
+    const navigate = useNavigate();
     const getCategoryData = async () => {
         try {
             const userInfo = localStorage.getItem("userInfo");
@@ -67,6 +68,32 @@ export default function () {
        // let user = value.user.filter((item) => item.id != id);
     }
 
+    // const updateContactHandler = async (category) => {
+    //     const response = await axios.put(`http://127.0.0.1:8000/api/categories/${category.id}`, category);
+    //     const { id, titre, statut } = response.data;
+    //     setcategory(
+    //         category.map((contact) => {
+    //         return contact.id === id ? { ...response.data } : category;
+    //       })
+    //     );
+    //   };
+
+    // const setID = (id) =>{
+    //     console.log(id);
+    //     localStorage.setItem('ID',id);
+    // }
+    
+    const editCategory=async(id) => {
+        console.log(id);
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        navigate(`/UpdateCategorie/${id}`);
+    }
+
     useEffect(() => {
         getCategoryData();
       //  handleDelete();
@@ -107,7 +134,7 @@ export default function () {
                                             <td>Admin </td>
                                             <td>{item.createdAt}</td>
                                             <td>
-                                                <Button variant="primary" type="details" href='/UpdateCategorie'  >
+                                                <Button variant="primary" onClick={ () => editCategory(item.id)} >
                                                     
                                                     <FcViewDetails />
                                                 </Button>

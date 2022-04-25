@@ -47,7 +47,7 @@ function App() {
           <Route path="/AdminForum" element={<AdminForum />} />
           <Route path="/ForgetPWD" element={<ForgetPWD />} />
           <Route path="/NewPWD" element={<NewPWD />} />
-          <Route path="/UpdateCategorie" element={<UpdateCategorie />} />
+          <Route path="/UpdateCategorie/:id" element={<UpdateCategorie />} />
         </Routes>      
     </Router>
   );
