@@ -21,7 +21,7 @@ export default function Login() {
                 }
             }
             const { data } = await axios.post(
-                "http://127.0.0.1:8000/api/middle/login",
+                "http://127.0.0.1:8000/api/printer/login",
                 {
                     username,
                     password

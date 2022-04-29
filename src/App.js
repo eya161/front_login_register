@@ -22,7 +22,8 @@ import ForgetPWD from './components/ForgetPWD/ForgetPWD';
 import NewPWD from './components/ForgetPWD/NewPWD';
 import UpdateCategorie from './components/Categorie/UpdateCategorie';
 import UpdatePays from './components/Pays/UpdatePays';
-import LoginPage from './components/LoginPage/LoginPage'
+import LoginPage from './components/LoginPage/LoginPage';
+import LoginPrinter from './components/LoginPage/LoginPrinter';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
           <Route path="/UpdateCategorie/:id" element={<UpdateCategorie />} />
           <Route path="/UpdatePays/:id" element={<UpdatePays />} />
           <Route path="/LoginPage" element={<LoginPage />} />
+          <Route path="/LoginPrinter" element={<LoginPrinter />} />
         </Routes>      
     </Router>
   );
