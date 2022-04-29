@@ -46,6 +46,9 @@ export default function Sidebar() {
             <NavLink tag={Link} to="/Profil" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Profil</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink tag={Link} to="/LoginPage" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Login users</CDBSidebarMenuItem>
+            </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
@@ -55,6 +58,7 @@ export default function Sidebar() {
               padding: '20px 5px',
             }}
           >
+            <hr/>
            &copy; Tanit Web-2022
           </div>
         </CDBSidebarFooter>
