@@ -24,6 +24,14 @@ import UpdateCategorie from './components/Categorie/UpdateCategorie';
 import UpdatePays from './components/Pays/UpdatePays';
 import LoginPage from './components/LoginPage/LoginPage';
 import LoginPrinter from './components/LoginPage/LoginPrinter';
+import NavbarUser from './components/Navbar/NavbarUser';
+import Home from './components/Home/Home';
+import Footer from './components/Footer/Footer';
+import ClientGMJ from './components/ClientGMJ/Client';
+import AddClient from './components/ClientGMJ/AddClient';
+import ModifyClient from './components/ClientGMJ/ModifyClient';
+import CommandeGMJ from './components/CommandeGMJ/Commande';
+import Statistique from './components/StatistiqueGMJ/Statistique';
 
 function App() {
   return (
@@ -53,6 +61,14 @@ function App() {
           <Route path="/UpdatePays/:id" element={<UpdatePays />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/LoginPrinter" element={<LoginPrinter />} />
+          <Route path="/NavbarUser" element={<NavbarUser />} />
+          <Route path="/Home" element={<Home />} />
+          <Route path="/Footer" element={<Footer />} />
+          <Route path="/ClientGMJ" element={<ClientGMJ />} />
+          <Route path="/AddClient" element={<AddClient />} />
+          <Route path="/ModifyClient" element={<ModifyClient />} />
+          <Route path="/CommandeGMJ" element={<CommandeGMJ />} />
+          <Route path="/Statistique" element={<Statistique />} />
         </Routes>      
     </Router>
   );

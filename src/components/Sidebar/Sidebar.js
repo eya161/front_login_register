@@ -7,15 +7,21 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from 'cdbreact';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export default function Sidebar() {
+  // const history = useNavigate();
+  //   const handleLogout = () => {
+  //       localStorage.removeItem('userInfo');
+  //       history("/LoginPage");
+  //   };
+
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial', background: '#eff5f8ad', marginTop:'-20px', position:'sticky' }}>
       <CDBSidebar textColor="#fff" backgroundColor="linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="../Commande/CommandeTab.js" className="text-decoration-none" style={{ color: 'inherit' }}>
+          <a href="/Dashboard" className="text-decoration-none" style={{ color: 'inherit' }}>
             GMJ
           </a>
         </CDBSidebarHeader>
@@ -40,14 +46,14 @@ export default function Sidebar() {
             <NavLink tag={Link} to="/Client" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Client</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="CommandeTab" activeClassName="activeClicked">
+            <NavLink tag={Link} to="/CommandeTab" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Commandes</CDBSidebarMenuItem>
             </NavLink>
             <NavLink tag={Link} to="/Profil" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Profil</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink tag={Link} to="/LoginPage" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Login users</CDBSidebarMenuItem>
+            <NavLink tag={Link} to="/Login" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Logout</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>

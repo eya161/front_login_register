@@ -30,7 +30,7 @@ export default function Login() {
             );
 
             console.log(data);
-            history("/Dashboard")
+            history("/Home")
             localStorage.setItem("userInfo", JSON.stringify(data));
             setError(false);
         } catch (error) {
