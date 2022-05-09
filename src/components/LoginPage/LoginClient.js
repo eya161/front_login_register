@@ -33,7 +33,7 @@ export default function Login() {
             console.log(data);
             const token = data.token;
             const decodedToken = jwtDecode(token);
-            const isAdmin = decodedToken.roles.includes("ROLE_MIDDLE");
+            const isAdmin = decodedToken.roles.includes("ROLE_CLIENT");
             console.log(isAdmin)
             if (isAdmin) { 
                 localStorage.setItem("userInfo", JSON.stringify(data));

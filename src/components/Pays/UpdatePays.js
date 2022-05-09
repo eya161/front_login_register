@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Navbar from '../Sidebar/Navbar';
 
 export default function PaysForum() {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export default function PaysForum() {
                 },
             };
         if ( id ) {
-            axios.get(`http://127.0.0.1:8000/api/pays/${id}`,config)
+            axios.get(`https://127.0.0.1:8000/api/pays/${id}`,config)
                 .then(res => {
                     console.log(res);
                     setpays(res.data);
@@ -69,7 +70,7 @@ export default function PaysForum() {
 
     return (
         <>
-            <Sidebar />
+            <Navbar />
             <div class="container">
                 <div class="main-body">
                     <div class="row">

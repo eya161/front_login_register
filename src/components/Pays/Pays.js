@@ -13,6 +13,7 @@ import SearchPays from './SearchPays';
 import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Sidebar/Navbar';
 
 export default function Pays() {
     const [pays, setpays] = useState([])
@@ -28,7 +29,7 @@ export default function Pays() {
             };
             console.log(config);
             const data = await axios.get(
-                "http://127.0.0.1:8000/api/pays",config
+                "https://127.0.0.1:8000/api/pays",config
             );
             console.log(data.data);
             setpays(data.data);
@@ -54,7 +55,7 @@ export default function Pays() {
     }, []);
   return (
     <div >
-        <Sidebar />
+        <Navbar />
     <br />
     <SearchPays />
     <div class="container horizontal-scrollable" >

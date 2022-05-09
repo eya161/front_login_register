@@ -5,6 +5,7 @@ import './Login.css';
 import Loading from '../Loading/Loading';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 export default function Login() {
     const [username, setusername] = useState("")
@@ -21,20 +22,29 @@ export default function Login() {
                 }
             }
             const { data } = await axios.post(
-                "http://127.0.0.1:8000/api/printer/login",
+                "https://127.0.0.1:8000/api/login",
                 {
                     username,
                     password
                 },
                 config
             );
-
+            console.log(config);
             console.log(data);
-            history("/Dashboard")
-            localStorage.setItem("userInfo", JSON.stringify(data));
-            setError(false);
+            const token = data.token;
+            const decodedToken = jwtDecode(token);
+            const isAdmin = decodedToken.roles.includes("ROLE_PRINTER");
+            console.log(isAdmin)
+            if (isAdmin) { 
+                localStorage.setItem("userInfo", JSON.stringify(data));
+                history("/Home");
+                setError(false);
+                
+            } else {
+                setError(true);
+            }
+           
         } catch (error) {
-            setError(error.response.data.message);
             setError(true);
         }
 

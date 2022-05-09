@@ -14,6 +14,7 @@ import SearchCategorie from './SearchCategorie';
 import Sidebar from '../Sidebar/Sidebar';
 import axios, { Axios } from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../Sidebar/Navbar';
 
 export default function () {
     const [category, setcategory] = useState([])
@@ -29,7 +30,7 @@ export default function () {
             };
             console.log(config);
             const data = await axios.get(
-                "http://127.0.0.1:8000/api/categories",config
+                "https://127.0.0.1:8000/api/categories",config
             );
             console.log(data.data);
             setcategory(data.data);
@@ -61,7 +62,7 @@ export default function () {
             },
         };
         let data = await axios.delete(
-            `http://127.0.0.1:8000/api/categories/${id}`,config
+            `https://127.0.0.1:8000/api/categories/${id}`,config
         )
         console.log(data)
         window.location.reload()
@@ -103,7 +104,7 @@ export default function () {
     
     return (
         <div >
-            <Sidebar />
+            <Navbar />
             <SearchCategorie />
             <div class="container horizontal-scrollable" >
                 <div class="row text-center">

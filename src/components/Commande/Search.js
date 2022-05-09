@@ -21,35 +21,6 @@ export default function Search() {
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Forum">Acceuil</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Liste des Commandes</li>
-                        <div class="row" style={{ marginLeft: '980px' }}>
-                            <div class="col-lg-6">
-                                <li>
-                                    <Dropdown>
-                                        <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ borderRadius: '30px', background: "linear-gradient(to right, rgb(57, 115, 133),rgb(45, 94, 109),rgb(29, 61, 71))", width: "85%" }}>
-                                            <MdNotifications />
-                                            <span class="label label-success" id="notificationNumber">0</span>
-                                        </Dropdown.Toggle>
-
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1"></Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </li>
-                            </div>
-                            <div class="col-lg-6" >
-                            <li>
-                                <Dropdown>
-                                    <Dropdown.Toggle variant="primary" id="dropdown-basic" style={{ borderRadius: '30px', background: "linear-gradient(to right, rgb(57, 115, 133),rgb(45, 94, 109),rgb(29, 61, 71))", width: "85%" }}>
-                                        <CgProfile />
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item href="/Profil">Profil</Dropdown.Item>
-                                        <Dropdown.Item href="#/action-2">Logout</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </li>
-                            </div>
-                        </div>
                     </ol>
                 </nav>
             </div>

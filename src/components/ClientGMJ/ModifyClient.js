@@ -30,7 +30,7 @@ export default function ClientForum() {
             };
             console.log(config);
             const data = await axios.get(
-                "http://127.0.0.1:8000/api/pays",config
+                "https://127.0.0.1:8000/api/pays",config
             );
             console.log(data.data);
             setpays(data.data);
@@ -53,7 +53,7 @@ export default function ClientForum() {
     useEffect(() => {
         getPaysData();
         //  handleDelete();
-    })
+    },[])
 
     return (
         <>

@@ -7,6 +7,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
 import axios from 'axios';
+import Navbar from '../Sidebar/Navbar';
 
 export default function PaysForum() {
     const [label, setlabel] = useState("")
@@ -30,7 +31,7 @@ export default function PaysForum() {
                 console.log(config);
                 setloading(true);
 
-                const {data} = await axios.post("http://127.0.0.1:8000/api/pays",
+                const {data} = await axios.post("https://127.0.0.1:8000/api/pays",
                 {
                    label,
                    code,
@@ -50,7 +51,7 @@ export default function PaysForum() {
 
     return (
         <>
-            <Sidebar />
+            <Navbar/>
             <div class="container">
                 <div class="main-body">
                     <div class="row">

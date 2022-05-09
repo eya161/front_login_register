@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { BsCheckCircle } from "react-icons/bs";
 import { ImBlocked } from "react-icons/im";
 import axios from 'axios';
+import Navbar from '../Sidebar/Navbar';
 
 export default function Produit() {
     const [produits, setproduits] = useState([])
@@ -29,7 +30,7 @@ export default function Produit() {
             };
             console.log(config);
             const data = await axios.get(
-                "http://127.0.0.1:8000/api/produits", config
+                "https://127.0.0.1:8000/api/produits", config
             );
             console.log(data.data);
             setproduits(data.data);
@@ -46,7 +47,7 @@ export default function Produit() {
             },
         };
         let data = await axios.delete(
-            `http://127.0.0.1:8000/api/produits/${id}`, config
+            `https://127.0.0.1:8000/api/produits/${id}`, config
         )
         console.log(data)
         window.location.reload()
@@ -57,7 +58,7 @@ export default function Produit() {
     }, []);
     return (
         <div >
-            <Sidebar />
+            <Navbar />
             <br />
             <ProduitSearch />
             <div class="container horizontal-scrollable" >

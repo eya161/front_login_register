@@ -9,11 +9,12 @@ import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchAdmin from './SearchAdmin';
 import Sidebar from '../Sidebar/Sidebar';
+import Navbar from '../Sidebar/Navbar';
 
 export default function Admin() {
     return (
         <div >
-            <Sidebar />
+            <Navbar />
             <br />
             <SearchAdmin />
             <div class="container horizontal-scrollable" >

@@ -7,6 +7,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 import Sidebar from '../Sidebar/Sidebar';
+import Navbar from '../Sidebar/Navbar';
 
 export default function ClientForum() {
     const [photo, setPhoto] = useState("");
@@ -88,7 +89,7 @@ export default function ClientForum() {
     }
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <div class="row" >

@@ -6,6 +6,7 @@ import './Login.css';
 import axios from 'axios';
 import Loading from '../Loading/Loading';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import jwtDecode from 'jwt-decode';
 
 export default function Login() {
     const [username, setusername] = useState("")
@@ -24,21 +25,30 @@ export default function Login() {
             }
             setloading(true)
             const { data } = await axios.post(
-                "http://127.0.0.1:8000/api/admin/login",
+                "https://127.0.0.1:8000/api/login",
                 {
                     username,
                     password
                 },
                 config
             );
-
+            console.log(config);
             console.log(data);
-            history("/Dashboard")
-            localStorage.setItem("userInfo", JSON.stringify(data));
-            setloading(false);
-            setError(false);
+            const token = data.token;
+            const decodedToken = jwtDecode(token);
+            const isAdmin = decodedToken.roles.includes("ROLE_ADMIN");
+            console.log(isAdmin)
+            if (isAdmin) { 
+                localStorage.setItem("userInfo", JSON.stringify(data));
+                history("/Dashboard")
+                setloading(false);
+                setError(false);
+                
+            } else {
+                setError(true);
+            }
+           
         } catch (error) {
-            setError(error.response.data.message);
             setloading(false);
             setError(true);
         }

@@ -8,6 +8,7 @@ import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
+import Navbar from '../Sidebar/Navbar';
 
 export default function UpdateCategorie() {
     const navigate = useNavigate();
@@ -57,7 +58,7 @@ export default function UpdateCategorie() {
                 },
             };
         if ( id ) {
-            axios.get(`http://127.0.0.1:8000/api/categories/${id}`,config)
+            axios.get(`https://127.0.0.1:8000/api/categories/${id}`,config)
                 .then(res => {
                     console.log(res);
                     setcategory(res.data);
@@ -83,7 +84,7 @@ export default function UpdateCategorie() {
                 'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
             },
         };
-        const data = await axios.put(`http://127.0.0.1:8000/api/categories/${id}`,
+        const data = await axios.put(`https://127.0.0.1:8000/api/categories/${id}`,
         {
             titre,
             statut
@@ -98,7 +99,7 @@ export default function UpdateCategorie() {
 
     return (
         <>
-            <Sidebar />
+            <Navbar />
             <div class="container">
                 <div class="main-body">
                     <div class="row">

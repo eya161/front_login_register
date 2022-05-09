@@ -9,11 +9,12 @@ import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchClient from './SearchClient';
 import Sidebar from '../Sidebar/Sidebar';
+import Navbar from '../Sidebar/Navbar';
 
 export default function Client() {
     return (
         <div >
-            <Sidebar />
+            <Navbar />
             <br />
             <SearchClient />
             <br />

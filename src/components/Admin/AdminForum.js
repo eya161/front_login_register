@@ -3,12 +3,13 @@ import '../Profil/ProfilEdit.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
 import Sidebar from '../Sidebar/Sidebar';
+import Navbar from '../Sidebar/Navbar';
 
 
 export default function AdminForum() {
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <div class="row">

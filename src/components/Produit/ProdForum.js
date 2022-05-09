@@ -7,6 +7,7 @@ import {useState} from 'react';
 import axios from 'axios';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
+import Navbar from '../Sidebar/Navbar';
 
 export default function ProdForum() {
     const [statut, setstatut] = useState(0)
@@ -33,7 +34,7 @@ export default function ProdForum() {
                     console.log(config);
                     setloading(true);
     
-                    const {data} = await axios.post("http://127.0.0.1:8000/api/produits",
+                    const {data} = await axios.post("https://127.0.0.1:8000/api/produits",
                     {
                         statut,
                         designation,
@@ -66,7 +67,7 @@ export default function ProdForum() {
             }
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <div class="row">

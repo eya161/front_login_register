@@ -2,11 +2,12 @@ import React from 'react';
 import './ProfilEdit.css';
 import avatar from './profile.png'
 import Sidebar from '../Sidebar/Sidebar';
+import Navbar from '../Sidebar/Navbar';
 
 export default function ProfilPWD() {
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <div class="row">

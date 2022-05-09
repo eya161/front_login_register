@@ -8,6 +8,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import axios from 'axios';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
+import Navbar from '../Sidebar/Navbar';
 
 export default function CategorieForum() {
     const [titre, settitre] = useState("")
@@ -30,7 +31,7 @@ export default function CategorieForum() {
                 console.log(config);
                 setloading(true);
 
-                const {data} = await axios.post("http://127.0.0.1:8000/api/categories",
+                const {data} = await axios.post("https://127.0.0.1:8000/api/categories",
                 {
                    titre,
                    statut,
@@ -48,7 +49,7 @@ export default function CategorieForum() {
         }
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <div class="row">

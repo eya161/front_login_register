@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../Sidebar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import './Profil.css';
 import avatar from './profile.png'
@@ -6,7 +7,7 @@ import avatar from './profile.png'
 export default function Profil() {
     return (
         <>
-        <Sidebar />
+        <Navbar />
         <div class="container">
             <div class="main-body">
                 <nav aria-label="breadcrumb" class="main-breadcrumb">
