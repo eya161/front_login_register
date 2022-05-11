@@ -14,7 +14,7 @@ export default function SearchAdmin() {
     <div class="container">
     <div class="main-body">
         <div class="row">
-                <nav aria-label="breadcrumb" class="main-breadcrumb mb-5" style={{ marginTop: '15px' }}>
+                <nav aria-label="breadcrumb" class="main-breadcrumb mb-5" style={{ marginTop: '15px', background: '#CBC0D3' }}>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Liste des administrateurs</li>
@@ -34,7 +34,7 @@ export default function SearchAdmin() {
                                 </Form.Group>
                             </div>
                             <div class="col-lg-1 ">
-                                <Button variant="primary" type="submit" className="button"style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                                <Button variant="primary" type="submit" className="button"style={{backgroundColor: "#5a406d"}}>
                                     <FaSearch />
                                 </Button>
                             </div>
@@ -43,7 +43,7 @@ export default function SearchAdmin() {
                 </div>
                 <div class="col-lg-3"></div>
                 <div class="col-lg-3">
-                    <Button variant="primary" type="submit" className="button" href='/AdminForum' style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                    <Button variant="primary" type="submit" className="button" href='/AdminForum' style={{backgroundColor:"#5a406d"}}>
                         Ajouter un administrateur
                     </Button>
                 </div>
