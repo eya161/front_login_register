@@ -4,16 +4,13 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { FaSearch } from "react-icons/fa";
-import { MdNotifications } from 'react-icons/md';
-import { CgProfile } from 'react-icons/cg';
-import Dropdown from 'react-bootstrap/Dropdown'
 
 export default function SearchPays() {
   return (
     <div class="container">
         <div class="main-body">
             <div class="row">
-                    <nav aria-label="breadcrumb" class="main-breadcrumb mb-5" style={{ marginTop: '15px' }}>
+                    <nav aria-label="breadcrumb" class="main-breadcrumb mb-5" style={{ marginTop: '15px', background: '#CBC0D3' }}>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Liste des pays</li>
@@ -33,7 +30,7 @@ export default function SearchPays() {
                                     </Form.Group>
                                 </div>
                                 <div class="col-lg-1 ">
-                                    <Button variant="primary" type="submit" className="button"style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                                    <Button variant="primary" type="submit" className="button"style={{background: "#5a406d"}}>
                                         <FaSearch />
                                     </Button>
                                 </div>
@@ -42,7 +39,7 @@ export default function SearchPays() {
                     </div>
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3">
-                        <Button variant="primary" type="submit" className="button" href='/PaysForum' style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                        <Button variant="primary" type="submit" className="button" href='/PaysForum' style={{background: "#5a406d"}}>
                             Ajouter un pays
                         </Button>
                     </div>

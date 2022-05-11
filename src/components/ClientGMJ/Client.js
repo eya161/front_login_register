@@ -27,7 +27,7 @@ export default function Client() {
             };
             console.log(config);
             const data = await axios.get(
-                `http://127.0.0.1:8000/api/users/?roles=["ROLE_USER"]`,config
+                `https://127.0.0.1:8000/api/users/?roles=["ROLE_USER"]`,config
             );
             console.log(data.data);
             setclient(data.data);

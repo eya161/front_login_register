@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react';
 import '../Profil/ProfilEdit.css';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button'
-import Sidebar from '../Sidebar/Sidebar';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import Loading from '../Loading/Loading';
 import axios from 'axios';
@@ -11,7 +10,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Navbar from '../Sidebar/Navbar';
 
 export default function PaysForum() {
-    const navigate = useNavigate();
+    const history = useNavigate();
     const [label, setlabel] = useState("")
     const [code, setcode] = useState("")
     const [statut, setstatut] = useState(0)
@@ -19,18 +18,37 @@ export default function PaysForum() {
     const { id } = useParams();
     const [error, setError] = useState("")
     const [loading, setloading] = useState("")
+    const update = async (id) => {
+        const userInfo = localStorage.getItem("userInfo");
+        // const Id = localStorage.getItem("ID");
+        console.log("id:", id);
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        await axios.put(`https://127.0.0.1:8000/api/pays/${id}`,
+            {
+                label,
+                code,
+                statut
+            }, config)
+
+
+
+    }
     useEffect(() => {
         const userInfo = localStorage.getItem("userInfo");
-            console.log(id);
-            // const Id = localStorage.getItem("ID");
-            // console.log(Id);
-            const config = {
-                headers: {
-                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-                },
-            };
-        if ( id ) {
-            axios.get(`https://127.0.0.1:8000/api/pays/${id}`,config)
+        console.log(id);
+        // const Id = localStorage.getItem("ID");
+        // console.log(Id);
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        if (id) {
+            axios.get(`https://127.0.0.1:8000/api/pays/${id}`, config)
                 .then(res => {
                     console.log(res);
                     setpays(res.data);
@@ -41,7 +59,7 @@ export default function PaysForum() {
                 .catch(err => {
                     console.log(err)
                 })
-            
+
         }
     }, []);
     console.log(id)
@@ -49,32 +67,13 @@ export default function PaysForum() {
     console.log(pays.code)
     console.log(pays.statut)
 
-    const update = async(id) => {
-        const userInfo = localStorage.getItem("userInfo");
-        console.log("id:",id);
-        const config = {
-            headers: {
-                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-            },
-        };
-        const data = await axios.put(`http://127.0.0.1:8000/api/pays/${id}`,
-        {
-            label,
-            code,
-            statut
-        }, config)
-        .then((res) => {
-            navigate('/Pays');
-        })
-    }
-
     return (
         <>
             <Navbar />
             <div class="container">
                 <div class="main-body">
                     <div class="row">
-                        <nav aria-label="breadcrumb" class="main-breadcrumb">
+                        <nav aria-label="breadcrumb" class="main-breadcrumb" style={{background: '#CBC0D3'}}>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                                 <li class="breadcrumb-item"><a href="/Pays">Liste des pays</a></li>
@@ -83,7 +82,8 @@ export default function PaysForum() {
                         </nav>
                         <br />
                         <br />
-                        <br />
+                        <div class="container">
+                            <div class="row">
                         <Form onSubmit={update(id)}>
                             <div class="col-lg-12">
                                 <div class="card">
@@ -139,11 +139,13 @@ export default function PaysForum() {
                             </div>
                             <div class="col-md-10 mb-3"></div>
                             <div class="col-md-1 mb-3">
-                                <Button variant="primary" type="submit" className="button" style={{ fontFamily: 'bold', fontSize: '19px', background: '#4A4E69' }}>
+                                <Button variant="primary" type="submit" onClick={() => { update(id); history("/Pays") }} className="button" style={{ fontFamily: 'bold', fontSize: '19px', background: '#5a406d' }}>
                                     Enregistrer
                                 </Button>
                             </div>
-                        </Form>
+                        </Form> 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div >

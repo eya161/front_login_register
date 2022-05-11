@@ -100,22 +100,6 @@ export default function Pays() {
             </Table>
         </div>
     </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-4 col-lg-4"></div>
-            <div class="col-xs-4 col-lg-4" style={{ display: 'block', width: 700 }}>
-                <Pagination>
-                    <Pagination.Prev />
-                    <Pagination.Ellipsis />
-                    <Pagination.Item>{1}</Pagination.Item>
-                    <Pagination.Item>{2}</Pagination.Item>
-                    <Pagination.Item>{3}</Pagination.Item>
-                    <Pagination.Ellipsis />
-                    <Pagination.Next />
-                </Pagination>
-            </div>
-        </div>
-    </div>
 </div>
   )
 }

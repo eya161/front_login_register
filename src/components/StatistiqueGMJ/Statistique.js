@@ -27,7 +27,7 @@ export default function Statistique() {
             };
             console.log(config);
             const data = await axios.get(
-                `http://127.0.0.1:8000/api/users/?roles=["ROLE_USER"]`,config
+                `https://127.0.0.1:8000/api/users/?roles=["ROLE_CLIENT"]`,config
             );
             console.log(data.data);
             setclient(data.data);
@@ -47,7 +47,7 @@ export default function Statistique() {
             };
             console.log(config);
             const data = await axios.get(
-               "http://127.0.0.1:8000/api/commandes",config
+               "https://127.0.0.1:8000/api/commandes",config
             );
             console.log(data.data);
             setcommande(data.data);
@@ -67,7 +67,7 @@ export default function Statistique() {
             };
             console.log(config);
             const data = await axios.get(
-               "http://127.0.0.1:8000/api/produits",config
+               "https://127.0.0.1:8000/api/produits",config
             );
             console.log(data.data);
             setproduit(data.data);

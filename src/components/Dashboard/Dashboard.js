@@ -27,7 +27,7 @@ export default function Dashboard() {
             };
             console.log(config);
             const data = await axios.get(
-                `http://127.0.0.1:8000/api/users/?roles=["ROLE_USER"]`,config
+                `https://127.0.0.1:8000/api/users/?roles=["ROLE_CLIENT"]`,config
             );
             console.log(data.data);
             setclient(data.data);
@@ -47,7 +47,7 @@ export default function Dashboard() {
             };
             console.log(config);
             const data = await axios.get(
-               "http://127.0.0.1:8000/api/commandes",config
+               "https://127.0.0.1:8000/api/commandes",config
             );
             console.log(data.data);
             setcommande(data.data);
@@ -67,7 +67,7 @@ export default function Dashboard() {
             };
             console.log(config);
             const data = await axios.get(
-               "http://127.0.0.1:8000/api/produits",config
+               "https://127.0.0.1:8000/api/produits",config
             );
             console.log(data.data);
             setproduit(data.data);
@@ -100,7 +100,7 @@ export default function Dashboard() {
                         <div class="content">
                             <div class="content-overlay"></div> <img alt="users" class="content-image" src={team} />
                             <div class="content-details fadeIn-bottom">
-                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px', color:'black' }}>{client.length} Utilisateurs</h3>
+                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px', color:'black' }}>{client.length}</h3><h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px', color:'black' }}>Utilisateurs</h3>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ export default function Dashboard() {
                         <div class="content">
                             <div class="content-overlay"></div> <img alt="orders" class="content-image" src={order}/>
                             <div class="content-details fadeIn-bottom">
-                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px',  color:'black' }}>{commande.length}Commandes</h3>
+                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px',  color:'black' }}>{commande.length}</h3><h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px', color:'black' }}>Commandes</h3>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@ export default function Dashboard() {
                         <div class="content">
                             <div class="content-overlay"></div> <img alt="products" class="content-image" src={product}/>
                             <div class="content-details fadeIn-bottom">
-                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px',  color:'black' }}>{produit.length}Produits</h3>
+                                <h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px',  color:'black' }}>{produit.length}</h3><h3 class="content-title" style={{ fontFamily:'bold', fontSize: '20px', color:'black' }}>Produits</h3>
                             </div>
                         </div>
                     </div>

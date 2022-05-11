@@ -11,10 +11,9 @@ import { ImBlocked } from "react-icons/im";
 import '../Commande/CommandeTab.css';
 import Pagination from 'react-bootstrap/Pagination';
 import SearchCategorie from './SearchCategorie';
-import Sidebar from '../Sidebar/Sidebar';
-import axios, { Axios } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../Sidebar/Navbar';
+import axios from 'axios';
 
 export default function () {
     const [category, setcategory] = useState([])
@@ -32,6 +31,7 @@ export default function () {
             const data = await axios.get(
                 "https://127.0.0.1:8000/api/categories",config
             );
+            console.log(data)
             console.log(data.data);
             setcategory(data.data);
         } catch (e) {
@@ -151,22 +151,6 @@ export default function () {
                             }
                         </tbody>
                     </Table>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-4 col-lg-4"></div>
-                    <div class="col-xs-4 col-lg-4" style={{ display: 'block', width: 700 }}>
-                        <Pagination>
-                            <Pagination.Prev />
-                            <Pagination.Ellipsis />
-                            <Pagination.Item>{1}</Pagination.Item>
-                            <Pagination.Item>{2}</Pagination.Item>
-                            <Pagination.Item>{3}</Pagination.Item>
-                            <Pagination.Ellipsis />
-                            <Pagination.Next />
-                        </Pagination>
-                    </div>
                 </div>
             </div>
         </div>

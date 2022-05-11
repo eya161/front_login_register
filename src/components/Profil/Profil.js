@@ -1,31 +1,66 @@
+import axios from 'axios';
 import React from 'react';
+import {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
+import Pays from '../Pays/Pays';
 import Navbar from '../Sidebar/Navbar';
 import Sidebar from '../Sidebar/Sidebar';
 import './Profil.css';
 import avatar from './profile.png'
 
 export default function Profil() {
+    const [profil, setprofil] = useState([])
+    const history=useNavigate()
+    const getProfilData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+          //  console.log(userInfo);
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                `https://127.0.0.1:8000/api/users/?roles=["ROLE_ADMIN"]`,config
+            );
+            console.log(data.data);
+            setprofil(data.data);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    useEffect(() => {
+        getProfilData();
+    }, [])
+    
+
     return (
         <>
         <Navbar />
         <div class="container">
             <div class="main-body">
-                <nav aria-label="breadcrumb" class="main-breadcrumb">
+                <nav aria-label="breadcrumb" class="main-breadcrumb" style={{ marginTop: '15px', background: '#CBC0D3' }}>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Profil</li>
                     </ol>
                 </nav>
+                <br/>
+                <br/>
+                {profil
+                    .map((item) => {
+                        return(
                 <div class="row gutters-sm">
                     <div class="col-md-4 mb-3">
                         <div class="card">
                             <div class="card-body">
                                 <div class="d-flex flex-column align-items-center text-center">
-                                    <img src={avatar} alt="Admin" class="rounded-circle p-1 bg-info" width="150" />
+                                    <img src={avatar} alt="Admin" class="rounded-circle p-1" style={{backgroundColor:"#5a406d"}} width="150" />
                                     <div class="mt-3">
-                                        <h4>John Doe</h4>
-                                        <p class="text-secondary mb-1">Full Stack Developer</p>
-                                        <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                                        <h4>{item.username}</h4>
+                                        <p class="text-secondary mb-1">Super Administrateur</p>
                                     </div>
                                 </div>
                             </div>
@@ -36,10 +71,10 @@ export default function Profil() {
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Full Name</h6>
+                                        <h6 class="mb-0">Username</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        Kenneth Valdez
+                                        {item.username}
                                     </div>
                                 </div>
                                 <hr />
@@ -48,16 +83,7 @@ export default function Profil() {
                                         <h6 class="mb-0">Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        fip@jukmuh.al
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Phone</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        (239) 816-9029
+                                        {item.email}
                                     </div>
                                 </div>
                                 <hr />
@@ -66,28 +92,21 @@ export default function Profil() {
                                         <h6 class="mb-0">Mobile</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        (320) 380-4539
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Address</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        Bay Area, San Francisco, CA
+                                        {item.telephone}
                                     </div>
                                 </div>
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn btn-info " target="__blank">Edit</a>
+                                        <a class="btn" style={{backgroundColor:"#5a406d",color:"black"}} onClick={ () => history("/ProfilEdit")}>Edit</a>
                                     </div>
                                 </div>
+                                <br/>
                             </div>
                         </div>
                     </div>
                 </div>
+                        )})}
             </div>
         </div>
         </>

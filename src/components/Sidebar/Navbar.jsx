@@ -55,7 +55,7 @@ export default function Navbar() {
                 <li key={index} className={item.cName} style={{height: '45px'}}>
                   <Link to={item.path} >
                     {item.icon}
-                    <span onClick={handleLogout}>{item.title}</span>
+                    <span>{item.title}</span>
                   </Link>
                 </li>
               );
