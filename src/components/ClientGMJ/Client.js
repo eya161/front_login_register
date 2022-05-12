@@ -14,8 +14,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Client() {
-    // const navigate = useNavigate();
     const [client, setclient] = useState([])
+    const navigate = useNavigate();
     const getClientData = async () => {
         try {
             const userInfo = localStorage.getItem("userInfo");
@@ -27,8 +27,9 @@ export default function Client() {
             };
             console.log(config);
             const data = await axios.get(
-                `https://127.0.0.1:8000/api/users/?roles=["ROLE_USER"]`,config
+                `https://127.0.0.1:8000/api/users/?roles=["ROLE_CLIENT"]`,config
             );
+            console.log(data)
             console.log(data.data);
             setclient(data.data);
         } catch (e) {
@@ -38,8 +39,7 @@ export default function Client() {
 
     useEffect(() => {
         getClientData();
-      //  handleDelete();
-    }, []);
+    }, [])
 
     return (
         <>
@@ -84,18 +84,18 @@ export default function Client() {
                             <Table striped bordered hover>
                                 <tbody>
                                 {client
-                                .map((item) => {
+                        .map((item) => {
                                     if (item.statut === 0) {
-                                        item.statut=<BsCheckCircle style={{color:'green',fontSize:'25px'}}></BsCheckCircle>
+                                        item.statut=<BsCheckCircle style={{color:'green', fontSize:'25px'}}></BsCheckCircle>
                                     }else{
                                         if(item.statut===1){
-                                        item.statut=<ImBlocked style={{color:'red',fontSize:'25px'}}></ImBlocked>}
+                                        item.statut=<ImBlocked style={{color:'red', fontSize:'25px'}}></ImBlocked>}
                                     }
                                     return(
-                                    <tr>
-                                        <td class="align-middle">photo</td>
+                                    <tr key={item.id}>
+                                        <td class="align-middle"><img src={`https://127.0.0.1:8000/api/userimage/${item.id}`} width="50px" alt='image'/></td>
                                         <td>
-                                            <ul id='otis' style={{display:'table-cell'}}>
+                                        <ul id='otis' style={{display:'table-cell'}}>
                                                 <li>
                                                     <b class="term">Code Client:      </b>
                                                     {item.codeclient}
@@ -106,12 +106,9 @@ export default function Client() {
                                                 </li>
                                                 <li>
                                                     <b>Livraison:</b>
-                                                    {item.rslivraison}
+                                                    {item.adresslivraison1}
                                                 </li>
                                             </ul>
-                                            {/* <h2 style={{fontFamily:'bold',fontSize:'15px'}}>Code client:</h2><p style={{fontSize:'14px'}}></p>
-                                            <h2 style={{fontFamily:'bold',fontSize:'15px'}}>Facturation:</h2><p style={{fontSize:'14px'}}></p>
-                                            <h2 style={{fontFamily:'bold',fontSize:'15px'}}>Livraison:</h2><p style={{fontSize:'14px'}}></p> */}
                                         </td>
                                         <td class="align-middle">
                                             <Button  type="details" style={{background:'#004b88b6'}} href="/ModifyClient" >

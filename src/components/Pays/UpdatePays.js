@@ -77,7 +77,7 @@ export default function PaysForum() {
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                                 <li class="breadcrumb-item"><a href="/Pays">Liste des pays</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ajouter Pays</li>
+                                <li class="breadcrumb-item active" aria-current="page">Modifer pays</li>
                             </ol>
                         </nav>
                         <br />

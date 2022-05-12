@@ -2,7 +2,7 @@
   --navBg: #060b26;
 }
 
-.navbar {
+.navbars {
   background-color: #5a406d;
   height: 80px;
   display: flex;
@@ -76,3 +76,5 @@
 span {
   margin-left: 16px;
 }
+
+

@@ -77,7 +77,7 @@ export default function UpdateCategorie() {
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/Dashboard">Acceuil</a></li>
                                 <li class="breadcrumb-item"><a href="/Categorie">Liste des catégories</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Ajouter Catégorie</li>
+                                <li class="breadcrumb-item active" aria-current="page">Modifier catégorie</li>
                             </ol>
                         </nav>
                         <br />

@@ -22,7 +22,7 @@ export default function NavbarUser() {
             <Container style={{ marginTop: '10px' }}>
                 <Navbar.Brand href="/Home" style={{width:'50%'}} ><img style={{width:'65%'}} src={logo} alt="logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                <Navbar.Collapse id="responsive-navbar-nav" style={{padding:"20px"}}>
                     <Nav className="me-auto">
                     </Nav>
                     <Nav>
