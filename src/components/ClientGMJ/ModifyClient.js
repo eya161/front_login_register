@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import ErrorMessagePWD from '../ErrorMessage/ErrorMessagePWD';
 import NavbarUser from '../Navbar/NavbarUser';
 import Footer from '../Footer/Footer';
 import { GrAdd } from 'react-icons/gr';
@@ -22,7 +22,7 @@ export default function ClientForum() {
     const getPaysData = async () => {
         try {
             const userInfo = localStorage.getItem("userInfo");
-          //  console.log(userInfo);
+            //  console.log(userInfo);
             const config = {
                 headers: {
                     'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
@@ -30,7 +30,7 @@ export default function ClientForum() {
             };
             console.log(config);
             const data = await axios.get(
-                `https://127.0.0.1:8000/api/pays/?statut=0`,config
+                `https://127.0.0.1:8000/api/pays/?statut=0`, config
             );
             console.log(data.data);
             setpays(data.data);
@@ -53,7 +53,7 @@ export default function ClientForum() {
     useEffect(() => {
         getPaysData();
         //  handleDelete();
-    },[])
+    }, [])
 
     return (
         <>
@@ -233,15 +233,13 @@ export default function ClientForum() {
 
                                         <div class="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Pays:</label>
-                                            <Form.Select
-                                                aria-label="Default select example"
-                                                onChange={(e)=> setpays(e.target.value)}
-                                            >
+                                            <Form.Select aria-label="Default select example" >
                                                 {pays
-                                                        .map((item) => { 
-                                                            return(
-                                                <option value={item.id}>{item.label}</option>
-                                                )})} 
+                                                    .map((item) => {
+                                                        return (
+                                                            <option key={item.id} value={item.id} >{item.label}</option>
+                                                        )
+                                                    })}
                                             </Form.Select>
                                         </div>
                                     </div>
@@ -306,14 +304,13 @@ export default function ClientForum() {
                                         </div>
                                         <div class="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Pays:</label>
-                                            <Form.Select
-                                                aria-label="Default select example"
-                                            >
+                                            <Form.Select aria-label="Default select example" >
                                                 {pays
-                                                        .map((item) => { 
-                                                            return(
-                                                <option >{item.label}</option>
-                                                 )})} 
+                                                    .map((item) => {
+                                                        return (
+                                                            <option key={item.id} value={item.id} >{item.label}</option>
+                                                        )
+                                                    })}
                                             </Form.Select>
                                         </div>
                                     </div>
@@ -328,7 +325,7 @@ export default function ClientForum() {
                                 <div class="card-body">
                                     <div class="row mb-3">
                                         <h6 class="mb-4 text-center" style={{ fontFamily: 'bold', fontSize: '30px', color: 'black' }}>Paramètres</h6>
-                                        {error && <ErrorMessage />}
+                                        {error && <ErrorMessagePWD />}
                                         <div class="col-sm-3">
                                             <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Username:</h6>
                                         </div>

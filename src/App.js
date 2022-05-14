@@ -27,6 +27,7 @@ import LoginPrinter from './components/LoginPage/LoginPrinter';
 import LoginClient from './components/LoginPage/LoginClient';
 import NavbarUser from './components/Navbar/NavbarUser';
 import Home from './components/Home/Home';
+import HomePrinter from './components/Home/HomePrinter';
 import Footer from './components/Footer/Footer';
 import ClientGMJ from './components/ClientGMJ/Client';
 import AddClient from './components/ClientGMJ/AddClient';
@@ -73,6 +74,7 @@ function App() {
           <Route path="/CommandeGMJ" element={<CommandeGMJ />} />
           <Route path="/Statistique" element={<Statistique />} />
           <Route path="/Navbar" element={<Navbar />} />
+          <Route path="/HomePrinter" element={<HomePrinter />} />
         </Routes>      
     </Router>
   );

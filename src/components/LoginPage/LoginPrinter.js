@@ -37,7 +37,7 @@ export default function Login() {
             console.log(isAdmin)
             if (isAdmin) { 
                 localStorage.setItem("userInfo", JSON.stringify(data));
-                history("/Home");
+                history("/HomePrinter");
                 setError(false);
                 
             } else {
