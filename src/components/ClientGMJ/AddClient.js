@@ -67,11 +67,11 @@ export default function ClientForum() {
                 },
             };
             console.log(config);
-            // if (data.password !== password2) {
-            //     return setError("Password do not match")
-            // } else {
-            //     setMessage(null)
-            // }
+            if (form.password !== password2) {
+                return setError("Password do not match")
+            } else {
+                setMessage(null)
+            }
             return axios.post(`https://127.0.0.1:8000/api/register?type=client`,
                 data,
                 config
