@@ -9,13 +9,13 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function Commande() {
+export default function BATValider() {
     const [commande, setcommande] = useState([])
     const navigate=useNavigate()
     const getCommandeData = async () => {
         try {
             const data = await axios.get(
-                "https://127.0.0.1:8000/getNouvelleCommandeFirst"
+                "https://127.0.0.1:8000/getBATValides"
             );
             console.log(data.data);
             setcommande(data.data.commandes);
@@ -23,21 +23,6 @@ export default function Commande() {
             console.log(e);
         }
     };
-
-    const deleteData = async (id) => {
-        const userInfo = localStorage.getItem("userInfo");
-        const config = {
-            headers: {
-                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-            },
-        };
-        let data = await axios.delete(
-            `https://127.0.0.1:8000/api/commandes/${id}`,config
-        )
-        console.log(data)
-        window.location.reload()
-       // let user = value.user.filter((item) => item.id != id);
-    }
 
     const editCategory=async(id) => {
         console.log(id);
@@ -47,7 +32,7 @@ export default function Commande() {
                 'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
             },
         };
-        navigate(`/EditerCommande/${id}`);
+        navigate(`/BATValiderDetail/${id}`);
     }
 
     useEffect(() => {
@@ -63,13 +48,13 @@ export default function Commande() {
                         <nav aria-label="breadcrumb" class="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/Home">Acceuil</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Liste des Nouveaux Commandes </li>
+                                <li class="breadcrumb-item active" aria-current="page">Liste des BAT Validés </li>
                             </ol>
                         </nav>
                     </div>
                     <div class="row mb-5">
                         <div class="col-md-10">
-                            <h6 style={{ fontFamily: 'bold', fontSize: '35px' }}>Liste des nouveaux commandes</h6>
+                            <h6 style={{ fontFamily: 'bold', fontSize: '35px' }}>Liste des BAT Validés</h6>
                         </div>
                     </div>
                     <div class="row mb-5" style={{backgroundColor: '#c9def7be ' }}>
@@ -90,13 +75,19 @@ export default function Commande() {
                                         <Form.Control className="border" type="text" placeholder="N° Commande" />
                                     </Form.Group>
                                 </div>
-                                <div class="col-md-3 mb-4">
+                                <div class="col-md-2 mb-4">
+                                    <Form.Group className="" controlId="date">
+                                        <label style={{ fontFamily: 'bold', fontSize: '20px' }}>N° Dossier:</label>
+                                        <Form.Control className="border" type="text" placeholder="N° Dossier" />
+                                    </Form.Group>
+                                </div>
+                                <div class="col-md-2 mb-4">
                                     <Form.Group className="" controlId="date">
                                         <label style={{ fontFamily: 'bold', fontSize: '20px' }}>De:</label>
                                         <Form.Control className="border" type="date" placeholder="jj/mm/aaaa" />
                                     </Form.Group>
                                 </div>
-                                <div class="col-md-3 mb-4">
+                                <div class="col-md-2 mb-4">
                                     <Form.Group className="" controlId="date">
                                         <label style={{ fontFamily: 'bold', fontSize: '20px' }}>Jusqu'à:</label>
                                         <Form.Control className="border" type="date" placeholder="jj/mm/aaaa" />
@@ -115,8 +106,8 @@ export default function Commande() {
                             <Table striped bordered hover>
                                 <thead style={{ backgroundColor: '#c9def7be ' }}>
                                     <tr>
-                                        <th>Date de commande</th>
-                                        <th>RS Client Facturation </th>
+                                        <th>N° Dossier</th>
+                                        <th>Date de commande </th>
                                         <th>Réf du produit</th>
                                         <th>Désignation</th>
                                         <th>Quantités</th>
@@ -124,40 +115,30 @@ export default function Commande() {
                                         <th>N° commande</th>
                                         <th>Date d'impression</th>
                                         <th>RS de livraison</th>
+                                        <th>Ville de livraison</th>
                                         <th>Détails</th>
-                                        <th>Supprimer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {commande
                                        .map((item) => {
-                                        if (item.statut==10) {
-                                            item.statut=<b>Commande en cours</b>
-                                        }
-                                        if (item.statut==1) {
-                                            item.statut=<b>Nouvelle commande</b>
-                                        }
                                         return(
                                     <tr key={item.id}>
+                                        <td>{item.referencecommerciale}</td>
                                         <td>{item.createdAt}</td>
-                                        <td>{item.rs_facturation}</td>
                                         <td>{item.reference}</td>
                                         <td>{item.Designation}</td>
                                         <td>{item.quantite}</td>
-                                        <td>{item.statut}</td>
+                                        <td><b>BAT validé</b></td>
                                         <td>{item.referencecommerciale}</td>
                                         <td>{item.dateimpression}</td>
                                         <td>{item.rslivraison}</td>
+                                        <td>{item.villelivraison}</td>
                                         <td>
                                             <Button variant="primary" type="details" onClick={ () => editCategory(item.id)} >
                                                 <FcViewDetails />
                                             </Button>
 
-                                        </td>
-                                        <td>
-                                            <Button variant="danger" type="delete" style={{ marginLeft: '25px' }} onClick={()=>deleteData(item.id)}>
-                                                <RiDeleteBin5Line />
-                                            </Button>
                                         </td>
                                     </tr>
                                         )})}

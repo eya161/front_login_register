@@ -47,11 +47,12 @@ export default function Home() {
                     <div class="col-md-1 border-right"></div>
                     <div class="col-md-5">
                         <div class="cards">
+                            <a id='link' href="/BATValider">
                             <div class=" third p-4 text-center">
                                 <img src={image3} alt="valider" style={{ width: "25%" }} />
                                 <h5>BAT Validés</h5>
                                 <p class="line3">Détails</p>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                     <div class="col-md-5 border-right">
@@ -67,11 +68,12 @@ export default function Home() {
                 <div class="row mb-4">
                     <div class="col-md-4 border-right">
                         <div class="cards">
+                            <a id='link' href="/CommandeEncours">
                             <div class=" second p-4 text-center">
                                 <img src={image5} alt="encours" style={{ width: "31.9%" }} />
                                 <h5>Commandes en Cours</h5>
                                 <p class="line2">Détails</p>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                     <div class="col-md-4">

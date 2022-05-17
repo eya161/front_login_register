@@ -8,6 +8,7 @@ import Footer from '../Footer/Footer';
 import { FaSearch } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 
 export default function ClientForum() {
     // const [password, setpassword] = useState("");
@@ -17,6 +18,8 @@ export default function ClientForum() {
     const [form, setform] = useState({})
     const history = useNavigate();
     const [pays, setpays] = useState([])
+    const [selectedPayID, setSelectedPayID] = useState(null);
+    const [statut, setStatut] = useState(null)
     const data = new FormData();
 
     const onChangeHandler = (e) =>{
@@ -25,15 +28,6 @@ export default function ClientForum() {
             [e.target.name]:e.target.value,
         })
     }
-
-    // const onChangeFile = (e) =>{
-    //     console.log(e.target.files[0]);
-    //     const image = e.target.files[0].names;
-    //     if (e.target && e.target.files[0]) {
-    //         data.append('image', form.image);
-    //     }
-        
-    // }
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -50,7 +44,7 @@ export default function ClientForum() {
         data.append('villefacturation',form.villefacturation)
         data.append('port',form.port)
         data.append('codeclient',form.codeclient)
-        // data.append('statut',(form.statut ? form.statut:""))
+        data.append('statut', statut);
         data.append('personnecontacter',form.personnecontacter)
         data.append('groupement',form.groupement)
         data.append('fax',form.fax)
@@ -58,6 +52,7 @@ export default function ClientForum() {
         data.append('rslivraison',form.rslivraison)
         data.append('codepostalfacturation',form.codepostalfacturation)
         data.append('codepostallivraison',form.codepostallivraison )
+        data.append('pays_id',selectedPayID)
         try {
             const userInfo = localStorage.getItem("userInfo");
             const config = {
@@ -67,11 +62,15 @@ export default function ClientForum() {
                 },
             };
             console.log(config);
-            if (form.password !== password2) {
-                return setError("Password do not match")
+            if(form.password!==null && password2!==null){
+                if (form.password !== password2) {
+                    return setError("Password do not match")
+                } else {
+                    setMessage(null)
+                }
             } else {
-                setMessage(null)
-            }
+                setError(true)
+            }   
             return axios.post(`https://127.0.0.1:8000/api/register?type=client`,
                 data,
                 config
@@ -95,16 +94,52 @@ export default function ClientForum() {
                     'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
                 },
             };
-            console.log(config);
+
             const data = await axios.get(
                 `https://127.0.0.1:8000/api/pays/?statut=0`, config
             );
-            console.log(data.data);
-            setpays(data.data);
+            const pays = data.data.map((pays) => {
+                return {
+                    value: pays.id,
+                    label: pays.label,
+                };
+            });
+            setpays(pays);            
+
         } catch (e) {
             console.log(e);
         }
     };
+
+    // const handleSelect =(id)=>{
+            
+    //     const userInfo = localStorage.getItem("userInfo");
+    //     //  console.log(userInfo);
+    //     const config = {
+    //         headers: {
+    //             "Content-Type": "multipart/form-data",
+    //             'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+    //         },
+    //     };
+    //         axios.get(`https://127.0.0.1:8000/api/pays/${id}`,config)
+    //         .then(res => {
+    //             const [Id,setId] = useState();
+    //             setId(res.data.id)
+    //             console.log(Id);     
+    //             form.pays_id=Id;  
+    //         }).catch(e =>{
+    //             console.log(e);
+    //         })
+            
+    // };
+
+    // const selectState =(e)=>{
+    //     const label=e.target.label;
+    //     const value=e.target.value;
+    //     const [labels, setlabels] = useState("");
+    //     console.log (labels);
+
+    //   }
 
 
     // const submitHandlerPWD = async (e) => {
@@ -124,28 +159,28 @@ export default function ClientForum() {
     return (
         <>
             <NavbarUser />
-            <div class="container" style={{ paddingBottom: '100px' }}>
-                <div class="row mb-1">
-                    <nav aria-label="breadcrumb" class="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="/Home">Acceuil</a></li>
-                            <li class="breadcrumb-item"><a href="/ClientGMJ">Liste des Clients</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Ajouter Client</li>
+            <div className="container" style={{ paddingBottom: '100px' }}>
+                <div className="row mb-1">
+                    <nav aria-label="breadcrumb" className="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><a href="/Home">Acceuil</a></li>
+                            <li className="breadcrumb-item"><a href="/ClientGMJ">Liste des Clients</a></li>
+                            <li className="breadcrumb-item active" aria-current="page">Ajouter Client</li>
                         </ol>
                     </nav>
                 </div>
-                <div class="row mb-5">
-                    <div class="col-md-10">
+                <div className="row mb-5">
+                    <div className="col-md-10">
                         <h6 style={{ fontFamily: 'bold', fontSize: '35px' }}>Ajouter un client</h6>
                     </div>
                 </div>
                 <Form onSubmit={submitHandler} >
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="card" style={{ backgroundColor: '#c9def7be ' }}>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-7 mb-4" style={{ marginTop: '14px' }}>
+                    <div className="row">
+                        <div className="col-lg-12">
+                            <div className="card" style={{ backgroundColor: '#c9def7be ' }}>
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-7 mb-4" style={{ marginTop: '14px' }}>
                                             <div className="input-group col-sm-7" style={{ background: 'white', fontFamily: 'bold', fontSize: '18px' }}>
                                                 <div className="input-group-prepend">
                                                 </div>
@@ -155,24 +190,26 @@ export default function ClientForum() {
                                                         className="custom-file-input"
                                                         id="inputGroupFile01"
                                                         name='image'
-                                                        // onChange={onChangeFile}
                                                         onChange={(e)=>setform({...data,image:e.target.files[0]})}
-                                                    // aria-describedby="inputGroupFileAddon01"
-                                                    // value={photo}
-                                                    // onChange={(e)=> setPhoto(e.target.value)}
                                                     />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-sm-5">
-                                            <div class="row flex">
-                                                <div class="col-lg-12">
-                                                    <div class="col-sm-2 col-lg-offset-2 mb-2" style={{ margintop: '-100px' }}>
+                                        <div className="col-sm-5">
+                                            <div className="row flex">
+                                                <div className="col-lg-12">
+                                                    <div className="col-sm-2 col-lg-offset-2 mb-2" style={{ margintop: '-100px' }}>
                                                         <label style={{ fontFamily: 'bold', fontSize: '18px' }}>Statut</label>
                                                         <Form.Check
                                                             type="switch"
                                                             id="custom-switch"
-                                                            // onChangeHandler={onChangeHandler}
+                                                            onChange={(e) => {
+                                                                if (e.target.checked== true) {
+                                                                    setStatut(0);
+                                                                } else {
+                                                                    setStatut(1);
+                                                                }
+                                                            }}
                                                             // style={{ backgroundColor: '#c9def7be ' }}
                                                         />
                                                     </div>
@@ -180,23 +217,23 @@ export default function ClientForum() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4 text-secondary">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Code Client:</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='codeclient'
                                                 value={form.codeclient}
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4 text-secondary">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Email:</label>
                                             <input
                                                 type="email"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='email'
                                                 value={form.email}
@@ -204,11 +241,11 @@ export default function ClientForum() {
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4 text-secondary">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Groupement:</label>
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='groupement'
                                                 value={form.groupement}
                                                 // onChange={(event) => setFormData({ ...data, groupement: event.target.value})}
@@ -216,34 +253,34 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4 text-secondary">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Téléphone:</label>
                                             <input
                                                 type="mobile"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='telephone'
                                                 value={form.telephone}
                                                 // onChange={(event) => setFormData({ ...data, telephone: event.target.value})}
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4 text-secondary">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Personne a contacté:</label>
                                             <input
                                                 type="name"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='personnecontacter'
                                                 value={form.personnecontacter}
                                                 // onChange={(event) => setFormData({ ...data, personnecontacter: event.target.value})}
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4 text-secondary">
+                                        <div className="col-sm-4 text-secondary">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Fax:</label>
                                             <input
                                                 type="Fax"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='fax'
                                                 value={form.fax}
                                                 // onChange={(event) => setFormData({ ...data, fax: event.target.value})}
@@ -251,33 +288,33 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3 form-check">
-                                        <div class="col-sm-6">
+                                    <div className="row mb-3 form-check">
+                                        <div className="col-sm-6">
                                             <input
                                                 id="Check1"
                                                 type="checkbox"
-                                                class="form-check-input"
+                                                className="form-check-input"
                                             />
-                                            <label for="Check1" class="form-check-label" style={{ float: 'left', fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Utiliser la même adresse pour la facturation et la livraison</label>
+                                            <label htmlFor="Check1" className="form-check-label" style={{ float: 'left', fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Utiliser la même adresse pour la facturation et la livraison</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <div class="card" style={{ backgroundColor: '#c9def7be ' }}>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <h6 class="mb-3 text-center" style={{ fontFamily: 'bold', fontSize: '25px' }}>Facturation</h6>
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>RS facturation:</h6>
+                    <div className="row">
+                        <div className="col-md-6 mb-3">
+                            <div className="card" style={{ backgroundColor: '#c9def7be ' }}>
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <h6 className="mb-3 text-center" style={{ fontFamily: 'bold', fontSize: '25px' }}>Facturation</h6>
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>RS facturation:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='rs_facturation'
                                                 value={form.rs_facturation}
@@ -286,14 +323,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 1:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 1:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='adressfacturation1'
                                                 value={form.adressfacturation1}
@@ -302,14 +339,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 2:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 2:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='adressfacturation2'
                                                 value={form.adressfacturation2}
                                                 // onChange={(event) => setFormData({ ...data, adressfacturation2: event.target.value})}
@@ -318,13 +355,13 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                    <div className="row mb-3">
 
-                                        <div class="col-sm-4">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Ville:</label>
                                             <input
                                                 type="country"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='villefacturation'
                                                 value={form.villefacturation}
@@ -332,11 +369,11 @@ export default function ClientForum() {
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Code Postal:</label>
                                             <input
                                                 type="code"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='codepostalfacturation'
                                                 value={form.codepostalfacturation}
@@ -345,33 +382,31 @@ export default function ClientForum() {
                                             />
                                         </div>
 
-                                        <div class="col-sm-4">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Pays:</label>
-                                            <Form.Select aria-label="Default select example" >
-                                                {pays
-                                                    .map((item) => {
-                                                        return (
-                                                            <option key={item.id} value={item.id} >{item.label}</option>
-                                                        )
-                                                    })}
-                                            </Form.Select>
+
+                                            <Select
+                                                options={pays}
+                                                onChange={(e) => setSelectedPayID(e.value) }
+                                            />
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <div class="card" style={{ backgroundColor: '#c9def7be ' }}>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <h6 class="mb-3 text-center" style={{ fontFamily: 'bold', fontSize: '25px' }}>Livraison</h6>
-                                        <div class="col-sm-3 mb-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>RS livraison:</h6>
+                        <div className="col-md-6 mb-3">
+                            <div className="card" style={{ backgroundColor: '#c9def7be ' }}>
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <h6 className="mb-3 text-center" style={{ fontFamily: 'bold', fontSize: '25px' }}>Livraison</h6>
+                                        <div className="col-sm-3 mb-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>RS livraison:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='rslivraison'
                                                 value={form.rslivraison}
@@ -380,14 +415,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 1:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 1:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='adresslivraison1'
                                                 value={data.adresslivraison1}
@@ -396,14 +431,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 2:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Adresse 2:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="address"
-                                                class="form-control"
+                                                className="form-control"
                                                 name='adresslivraison2'
                                                 value={data.adresslivraison2}
                                                 // onChange={(event) => setFormData({ ...data, adresslivraison2: event.target.value})}
@@ -411,12 +446,12 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-4">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Ville:</label>
                                             <input
                                                 type="country"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='villelivraison'
                                                 value={form.villelivraison}
@@ -424,11 +459,11 @@ export default function ClientForum() {
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Code Postal:</label>
                                             <input
                                                 type="code"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='codepostallivraison'
                                                 value={form.codepostallivraison}
@@ -436,37 +471,33 @@ export default function ClientForum() {
                                                 onChange={onChangeHandler}
                                             />
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div className="col-sm-4">
                                             <label style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Pays:</label>
-                                            <Form.Select aria-label="Default select example" >
-                                                {pays
-                                                    .map((item) => {
-                                                        return (
-                                                            <option key={item.id} value={item.id} >{item.label}</option>
-                                                        )
-                                                    })}
-                                            </Form.Select>
+                                            <Select
+                                                options={pays}
+                                                onChange={(e) => setSelectedPayID(e.value) }
+                                            />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-                            <div class="card" style={{ backgroundColor: '#c9def7be ' }}>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <h6 class="mb-4 text-center" style={{ fontFamily: 'bold', fontSize: '30px', color: 'black' }}>Paramètres</h6>
+                    <div className="row">
+                        <div className="col-lg-1"></div>
+                        <div className="col-lg-10">
+                            <div className="card" style={{ backgroundColor: '#c9def7be ' }}>
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <h6 className="mb-4 text-center" style={{ fontFamily: 'bold', fontSize: '30px', color: 'black' }}>Paramètres</h6>
                                         {error && <ErrorMessagePWD />}
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Username:</h6>
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Username:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="username"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='username'
                                                 value={form.username}
@@ -475,14 +506,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Mot de Passe:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Mot de Passe:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='password'
                                                 value={form.password}
@@ -491,14 +522,14 @@ export default function ClientForum() {
                                             />
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Mot de Passe à nouveau:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Mot de Passe à nouveau:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="password"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 value={password2}
                                                 onChange={(e) => setpassword2(e.target.value)}
@@ -508,16 +539,16 @@ export default function ClientForum() {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-1"></div>
+                        <div className="col-lg-1"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <div class="col-lg-10">
-                            <div class="card" style={{ backgroundColor: '#c9def7be ' }}>
-                                <div class="card-body">
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Commentaire:</h6>
+                    <div className="row">
+                        <div className="col-lg-1"></div>
+                        <div className="col-lg-10">
+                            <div className="card" style={{ backgroundColor: '#c9def7be ' }}>
+                                <div className="card-body">
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Commentaire:</h6>
                                         </div>
                                         <Form.Group className="col-sm-9 mb-3" controlId="comment">
                                             <Form.Control
@@ -526,14 +557,14 @@ export default function ClientForum() {
                                             />
                                         </Form.Group>
                                     </div>
-                                    <div class="row mb-3">
-                                        <div class="col-sm-3">
-                                            <h6 class="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Port:</h6>
+                                    <div className="row mb-3">
+                                        <div className="col-sm-3">
+                                            <h6 className="mb-0" style={{ fontFamily: 'bold', color: 'black', fontSize: '18px' }}>Port:</h6>
                                         </div>
-                                        <div class="col-sm-9 text-secondary">
+                                        <div className="col-sm-9 text-secondary">
                                             <input
                                                 type="text"
-                                                class="form-control"
+                                                className="form-control"
                                                 required
                                                 name='port'
                                                 value={form.port}
@@ -545,11 +576,11 @@ export default function ClientForum() {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-1"></div>
+                        <div className="col-lg-1"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-10 mb-3"></div>
-                        <div class="col-md-2 mb-3">
+                    <div className="row">
+                        <div className="col-md-10 mb-3"></div>
+                        <div className="col-md-2 mb-3">
                             <Button variant="primary" type="submit"className="button" style={{ fontFamily: 'bold', fontSize: '19px', backgroundColor: '#004b88b6' }}>
                                 Enregistrer
                             </Button>

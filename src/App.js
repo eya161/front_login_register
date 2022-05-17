@@ -35,6 +35,13 @@ import ModifyClient from './components/ClientGMJ/ModifyClient';
 import CommandeGMJ from './components/CommandeGMJ/Commande';
 import Statistique from './components/StatistiqueGMJ/Statistique';
 import Navbar from './components/Sidebar/Navbar';
+import EditerCommande from './components/CommandeGMJ/EditerCommande';
+import Visualisergraph from './components/CommandeGMJ/Visualisergraph';
+import Visualiserpiece from './components/CommandeGMJ/Visualiserpiece';
+import BATValider from './components/BATValider/BATValider';
+import BATValiderDetail from './components/BATValider/BATValiderDetail';
+import CommandeEncours from './components/CommandeEnCours/CommandeEncours';
+import ValidationCommande from './components/CommandeEnCours/ValidationCommande';
 
 function App() {
   return (
@@ -45,7 +52,7 @@ function App() {
           <Route path="/Dashboard" element={<Dashboard />} />
           <Route path="/CommandeTab" element={<CommandeTab />} />
           <Route path="/Profil" element={<Profil />} />
-          <Route path="/ProfilEdit" element={<ProfilEdit />} />
+          <Route path="/ProfilEdit/:id" element={<ProfilEdit />} />
           <Route path="/ProfilPWD" element={<ProfilPWD />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/Client" element={<Client />} />
@@ -70,11 +77,19 @@ function App() {
           <Route path="/Footer" element={<Footer />} />
           <Route path="/ClientGMJ" element={<ClientGMJ />} />
           <Route path="/AddClient" element={<AddClient />} />
-          <Route path="/ModifyClient" element={<ModifyClient />} />
+          <Route path="/ModifyClient/:id" element={<ModifyClient />} />
           <Route path="/CommandeGMJ" element={<CommandeGMJ />} />
           <Route path="/Statistique" element={<Statistique />} />
           <Route path="/Navbar" element={<Navbar />} />
           <Route path="/HomePrinter" element={<HomePrinter />} />
+          <Route path="/EditerCommande/:id" element={<EditerCommande />} />
+          <Route path="/Visualisergraph/:id" element={<Visualisergraph />} />
+          <Route path="/Visualiserpiece/:id" element={<Visualiserpiece />} />
+          <Route path="/BATValider" element={<BATValider />} />
+          <Route path="/BATValiderDetail/:id" element={<BATValiderDetail />} />
+          <Route path="/CommandeEncours" element={<CommandeEncours />} />
+          <Route path="/ValidationCommande/:id" element={<ValidationCommande />} />
+          
         </Routes>      
     </Router>
   );

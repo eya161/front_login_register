@@ -11,14 +11,17 @@ import { FcViewDetails } from 'react-icons/fc';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
+import {useParams} from 'react-router-dom';
 
 export default function ClientForum() {
     const [password, setpassword] = useState("");
     const [password2, setpassword2] = useState("");
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
+    const { id } = useParams();
     // const navigate = useNavigate();
     const [pays, setpays] = useState([])
+    const [commande, setcommande] = useState([])
     const getPaysData = async () => {
         try {
             const userInfo = localStorage.getItem("userInfo");
@@ -39,6 +42,28 @@ export default function ClientForum() {
         }
     };
 
+    const getCommandeData = async (id) => {
+        try {
+            // const userInfo = localStorage.getItem("userInfo");
+            // console.log("id:", id);
+            // //  console.log(userInfo);
+            // const config = {
+            //     headers: {
+            //         'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            //     },
+            // };
+            // console.log(config);
+            const data = await axios.get(
+                `https://127.0.0.1:8000/getcommandebyidproduituser/${id}`
+            );
+            console.log(data.data);
+            setcommande(data.data.commandes);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+
     const submitHandler = async (e) => {
         e.preventDefault();
         if (password !== password2) {
@@ -52,6 +77,7 @@ export default function ClientForum() {
 
     useEffect(() => {
         getPaysData();
+        getCommandeData(id);
         //  handleDelete();
     }, [])
 
@@ -456,17 +482,44 @@ export default function ClientForum() {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                            {commande
+                                .map((item) => {
+                                    if (item.statut==10) {
+                                        item.statut=<b>Commande en cours</b>
+                                    }
+                                    if (item.statut==1) {
+                                        item.statut=<b>Nouvelle commande</b>
+                                    }
+                                    if (item.statut==2) {
+                                        item.statut=<b>En Attente de validation</b>
+                                    }
+                                    if (item.statut==3) {
+                                        item.statut=<b>Bat réfusé</b>
+                                    }
+                                    if (item.statut==4) {
+                                        item.statut=<b>Bat Accepté</b>
+                                    }
+                                    if (item.statut==5) {
+                                        item.statut=<b>En cours d'impression</b>
+                                    }
+                                    if (item.statut==6) {
+                                        item.statut=<b>En cours de livraison</b>
+                                    }
+                                    if (item.statut==7  ) {
+                                        item.statut=<b>Facturation</b>
+                                    }
+                                    return (
+                                <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.createdAt}</td>
+                                    <td>{item.reference}</td>
+                                    <td>{item.Designation}</td>
+                                    <td>{item.quantite}</td>
+                                    <td>{item.statut}</td>
+                                    <td>{item.referencecommerciale}</td>
+                                    <td>{item.dateimpression}</td>
+                                    <td>{item.villelivraison}</td>
+                                    <td>{item.rslivraison}</td>
                                     <td>
                                         <div class="container">
                                             <div class="row flex">
@@ -484,6 +537,7 @@ export default function ClientForum() {
                                         </div>
                                     </td>
                                 </tr>
+                                    )})}
                             </tbody>
                         </Table>
                     </div>

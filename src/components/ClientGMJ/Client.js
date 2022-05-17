@@ -37,6 +37,18 @@ export default function Client() {
         }
     };
 
+    const editCategory=async(id) => {
+        console.log(id);
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        navigate(`/ModifyClient/${id}`);
+    }
+
+
     useEffect(() => {
         getClientData();
     }, [])
@@ -111,7 +123,7 @@ export default function Client() {
                                             </ul>
                                         </td>
                                         <td class="align-middle">
-                                            <Button  type="details" style={{background:'#004b88b6'}} href="/ModifyClient" >
+                                            <Button  type="details" style={{background:'#004b88b6'}} onClick={ () => editCategory(item.id)}>
                                                 Détails
                                             </Button>
                                         </td>

@@ -20,7 +20,7 @@ export default function NavbarUser() {
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark" style={{ marginTop: '-30px', background: '#004b88b6' }}>
             <Container style={{ marginTop: '10px' }}>
-                <Navbar.Brand href="/Home" style={{width:'50%'}} ><img style={{width:'65%'}} src={logo} alt="logo" /></Navbar.Brand>
+                <Navbar.Brand href="/HomePrinter" style={{width:'50%'}} ><img style={{width:'65%'}} src={logo} alt="logo" /></Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav" style={{padding:"20px"}}>
                     <Nav className="me-auto">

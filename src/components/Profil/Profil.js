@@ -31,6 +31,17 @@ export default function Profil() {
         }
     };
 
+    const editProfile=async(id) => {
+        console.log(id);
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        history(`/ProfilEdit/${id}`);
+    }
+
     useEffect(() => {
         getProfilData();
     }, [])
@@ -98,7 +109,7 @@ export default function Profil() {
                                 <hr />
                                 <div class="row">
                                     <div class="col-sm-12">
-                                        <a class="btn" style={{backgroundColor:"#5a406d",color:"black"}} onClick={ () => history("/ProfilEdit")}>Edit</a>
+                                        <a class="btn" style={{backgroundColor:"#5a406d",color:"black"}} onClick={ () => editProfile(item.id)} >Edit</a>
                                     </div>
                                 </div>
                                 <br/>
