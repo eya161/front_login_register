@@ -19,9 +19,13 @@ import { SidebarData } from "./SlidebarData";
 import "./Navbar.css";
 import { basePlacements } from "@popperjs/core";
 import { NavDropdown } from "react-bootstrap";
+import axios from "axios";
 
 export default function Navbar() {
     const [sidebar, setSidebar] = useState(false);
+    const [nbvalide, setnbvalide] = useState(0);
+    const [nbimpression, setnbimpression] = useState(0);
+    const [nblivraison, setnblivraison] = useState(0);
 
     const showSidebar = () => setSidebar(!sidebar);
 
@@ -31,6 +35,74 @@ export default function Navbar() {
         history("/Login");
     };
 
+    const getNbvalideData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                "https://127.0.0.1:8000/api/commandes/getcountcommandeenattentedevalidation",config
+            );
+            console.log(data.data.nbcommandeenattentedevalidation);
+            setnbvalide(data.data.nbcommandeenattentedevalidation);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const getNbimpressionData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                "https://127.0.0.1:8000/api/commandes/getcountcommandeenattenteimpression",config
+            );
+            console.log(data.data.nbcommandeenattenteimpression);
+            setnbimpression(data.data.nbcommandeenattenteimpression);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
+    const getlivraisonData = async () => {
+        try {
+            const userInfo = localStorage.getItem("userInfo");
+            const config = {
+                headers: {
+                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+                },
+            };
+            console.log(config);
+            const data = await axios.get(
+                "https://127.0.0.1:8000/api/commandes/getcountcommandeenattentelivraison",config
+            );
+            console.log(data.data.nbcommandeenattentelivraison);
+            setnblivraison(data.data.nbcommandeenattentelivraison);
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    
+    useEffect(() => {
+        getNbvalideData();
+        getNbimpressionData();
+        getlivraisonData();
+        return()=>{
+            setnbvalide(nbvalide);
+            setnbimpression(nbimpression);
+            setnblivraison(nblivraison);
+        }
+    }, [])
+    
 
     return (
         <>
@@ -42,8 +114,10 @@ export default function Navbar() {
                             <FaIcons.FaBars onClick={showSidebar} />
                         </Link></a>
                     <a style={{marginRight:'400px'}}>
-                        <NavDropdown color='white' title={<MdIcons.MdNotificationsNone style={{fontSize:'36px'}}/>} id="collasible-nav-dropdown" style={{marginTop:"5px"}} >
-                            <NavDropdown.Item >Se Déconnecté</NavDropdown.Item>
+                        <NavDropdown color='white' title={<><MdIcons.MdNotificationsNone style={{fontSize:'36px'}}/><b style={{color:'#fff'}}>{nbvalide+nblivraison+nbimpression}</b></>} id="collasible-nav-dropdown" style={{marginTop:"5px"}} >
+                            <NavDropdown.Item key={nbvalide}>Attente de validation: {nbvalide}</NavDropdown.Item>
+                            <NavDropdown.Item key={nbimpression}>En cours d'impression: {nbimpression}</NavDropdown.Item>
+                            <NavDropdown.Item key={nblivraison}>En cours de livraison: {nblivraison}</NavDropdown.Item>
                         </NavDropdown>
                     </a>
                 </div>
