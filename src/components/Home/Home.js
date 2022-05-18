@@ -19,101 +19,102 @@ export default function Home() {
     return (
         <>
             <NavbarUser />
-            <div class="container mt-4 justify-content-center under">
-                <div class="row mb-4">
-                    <div class="col-md-1 border-right"></div>
-                    <div class="col-md-5 border-right">
-                        <div class="cards wrap" >
+            <div className="container mt-4 justify-content-center under">
+                <div className="row mb-4">
+                    <div className="col-md-1 border-right"></div>
+                    <div className="col-md-5 border-right">
+                        <div className="cards wrap" >
                         <a id='link' href="/ClientGMJ">
-                            <div class="first  p-4 text-center" href="/ClientGMJ">
+                            <div className="first  p-4 text-center" href="/ClientGMJ">
                                 <img src={image1} alt="clients" style={{ width: "35%" }} />
                                 <h5>Listes Clients</h5>
-                                <p class="line1">Détails</p>
+                                <p className="line1">Détails</p>
                             </div></a>
                         </div>
                     </div>
-                    <div class="col-md-5 border-right" >
-                        <div class="cards wrap" >
+                    <div className="col-md-5 border-right" >
+                        <div className="cards wrap" >
                         <a id='link' href="/CommandeGMJ">
-                            <div class=" second p-4 text-center">
+                            <div className=" second p-4 text-center">
                                 <img src={image2} alt="orders" style={{ width: "35%" }} href="/ClientGMJ"/>
                                 <h5>Nouvelle Commande</h5>
-                                <p class="line2">Détails</p>
+                                <p className="line2">Détails</p>
                             </div></a>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-md-1 border-right"></div>
-                    <div class="col-md-5">
-                        <div class="cards">
+                <div className="row mb-4">
+                    <div className="col-md-1 border-right"></div>
+                    <div className="col-md-5">
+                        <div className="cards">
                             <a id='link' href="/BATValider">
-                            <div class=" third p-4 text-center">
+                            <div className=" third p-4 text-center">
                                 <img src={image3} alt="valider" style={{ width: "25%" }} />
                                 <h5>BAT Validés</h5>
-                                <p class="line3">Détails</p>
+                                <p className="line3">Détails</p>
                             </div></a>
                         </div>
                     </div>
-                    <div class="col-md-5 border-right">
-                        <div class="cards">
-                            <div class="first p-4 text-center">
+                    <div className="col-md-5 border-right">
+                        <div className="cards">
+                            <div className="first p-4 text-center">
                                 <img src={image4} alt="refuser" style={{ width: "22.2%" }} />
                                 <h5>BAT Refusés</h5>
-                                <p class="line1">Détails</p>
+                                <p className="line1">Détails</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-md-4 border-right">
-                        <div class="cards">
+                <div className="row mb-4">
+                    <div className="col-md-4 border-right">
+                        <div className="cards">
                             <a id='link' href="/CommandeEncours">
-                            <div class=" second p-4 text-center">
+                            <div className=" second p-4 text-center">
                                 <img src={image5} alt="encours" style={{ width: "31.9%" }} />
                                 <h5>Commandes en Cours</h5>
-                                <p class="line2">Détails</p>
+                                <p className="line2">Détails</p>
                             </div></a>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="cards">
-                            <div class=" third p-4 text-center">
+                    <div className="col-md-4">
+                        <div className="cards">
+                            <a id='link' href='/Commandeimpression'>
+                            <div className=" third p-4 text-center">
                                 <img src={image6} alt="print" style={{ width: "31.8%" }} />
                                 <h5>Dossier en Cours d'Impression</h5>
-                                <p class="line3">Détails</p>
-                            </div>
+                                <p className="line3">Détails</p>
+                            </div></a>
                         </div>
                     </div>
-                    <div class="col-md-4 border-right">
-                        <div class="cards">
-                            <div class="first p-4 text-center">
+                    <div className="col-md-4 border-right">
+                        <div className="cards">
+                            <div className="first p-4 text-center">
                                 <img src={image7} alt="deliv" style={{ width: "53.3%" }} />
                                 <h5>Dossier en Cours de Livraison</h5>
-                                <p class="line1">Détails</p>
+                                <p className="line1">Détails</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="row mb-4">
-                    <div class="col-md-1 border-right"></div>
-                    <div class="col-md-5 border-right">
-                        <div class="cards wrap">
+                <div className="row mb-4">
+                    <div className="col-md-1 border-right"></div>
+                    <div className="col-md-5 border-right">
+                        <div className="cards wrap">
                         <a id='link' href="/Statistique">
-                            <div class=" second p-4 text-center">
+                            <div className=" second p-4 text-center">
                                 <img src={image8} alt="stat" style={{ width: "25%" }} />
                                 <h5>Statistiques</h5>
-                                <p class="line2">Détails</p>
+                                <p className="line2">Détails</p>
                             </div>
                         </a>
                         </div>
                     </div>
-                    <div class="col-md-5">
-                        <div class="cards">
-                            <div class=" third  p-4 text-center">
+                    <div className="col-md-5">
+                        <div className="cards">
+                            <div className=" third  p-4 text-center">
                                 <img src={image9} alt="hist" style={{ width: "22.2%" }} />
                                 <h5>Historique Commandes</h5>
-                                <p class="line3">Détails</p>
+                                <p className="line3">Détails</p>
                             </div>
                         </div>
                     </div>

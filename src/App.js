@@ -38,10 +38,13 @@ import Navbar from './components/Sidebar/Navbar';
 import EditerCommande from './components/CommandeGMJ/EditerCommande';
 import Visualisergraph from './components/CommandeGMJ/Visualisergraph';
 import Visualiserpiece from './components/CommandeGMJ/Visualiserpiece';
+import VisualiserBAT from './components/CommandeEncoursImpression/VisualiserBAT';
 import BATValider from './components/BATValider/BATValider';
 import BATValiderDetail from './components/BATValider/BATValiderDetail';
 import CommandeEncours from './components/CommandeEnCours/CommandeEncours';
 import ValidationCommande from './components/CommandeEnCours/ValidationCommande';
+import CommandeImpression from './components/CommandeEncoursImpression/CommandeImpression';
+import ConsulterImpression from './components/CommandeEncoursImpression/ConsulterImpression';
 
 function App() {
   return (
@@ -85,10 +88,13 @@ function App() {
           <Route path="/EditerCommande/:id" element={<EditerCommande />} />
           <Route path="/Visualisergraph/:id" element={<Visualisergraph />} />
           <Route path="/Visualiserpiece/:id" element={<Visualiserpiece />} />
+          <Route path="/VisualiserBAT/:id" element={<VisualiserBAT />} />
           <Route path="/BATValider" element={<BATValider />} />
           <Route path="/BATValiderDetail/:id" element={<BATValiderDetail />} />
           <Route path="/CommandeEncours" element={<CommandeEncours />} />
           <Route path="/ValidationCommande/:id" element={<ValidationCommande />} />
+          <Route path="/CommandeImpression" element={<CommandeImpression />} />
+          <Route path="/ConsulterImpression/:id" element={<ConsulterImpression />} />
           
         </Routes>      
     </Router>
