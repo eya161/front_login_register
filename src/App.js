@@ -45,6 +45,9 @@ import CommandeEncours from './components/CommandeEnCours/CommandeEncours';
 import ValidationCommande from './components/CommandeEnCours/ValidationCommande';
 import CommandeImpression from './components/CommandeEncoursImpression/CommandeImpression';
 import ConsulterImpression from './components/CommandeEncoursImpression/ConsulterImpression';
+import CommandeEnCoursPrinter from './components/CommandeEnCoursPrinter/Commande';
+import StatistiquePrinter from './components/StatistiqueGMJ/StatistiquePrinter'
+import AddBAT from './components/CommandeEnCoursPrinter/AddBAT';
 
 function App() {
   return (
@@ -95,6 +98,9 @@ function App() {
           <Route path="/ValidationCommande/:id" element={<ValidationCommande />} />
           <Route path="/CommandeImpression" element={<CommandeImpression />} />
           <Route path="/ConsulterImpression/:id" element={<ConsulterImpression />} />
+          <Route path="/CommandeEnCoursPrinter" element={<CommandeEnCoursPrinter />} />
+          <Route path="/StatistiquePrinter" element={<StatistiquePrinter />} />
+          <Route path="/AddBAT/:id" element={<AddBAT />} />
           
         </Routes>      
     </Router>

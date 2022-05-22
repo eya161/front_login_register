@@ -14,7 +14,7 @@ export default function Footer() {
                     <div class="col-xs-12 col-sm-4 col-md-4">
                         <h5>About</h5>
                         <ul class="list-unstyled quick-links">
-                            <li><a href="/Home"><i class="fa fa-angle-double-right"></i>Home</a></li>
+                            <li><a href="/HomePrinter"><i class="fa fa-angle-double-right"></i>Home</a></li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-4">

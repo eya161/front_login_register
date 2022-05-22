@@ -15,7 +15,7 @@ import image9 from './historique.jpg';
 import image10 from './planning.jpg';
 import image11 from './shipping.png';
 import image12 from './bill.png';
-import Footer from '../Footer/Footer';
+import Footer from '../Footer/FooterPrinter';
 
 
 export default function Home() {
@@ -26,11 +26,12 @@ export default function Home() {
                 <div class="row mb-4">
                     <div class="col-md-4 border-right">
                         <div class="cards">
+                            <a id='link' href="/CommandeEnCoursPrinter">
                             <div class=" second p-4 text-center">
                                 <img src={image5} alt="encours" style={{ width: "31.9%" }} />
                                 <h5>Commandes en Cours</h5>
                                 <p class="line2">Détails</p>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -93,7 +94,7 @@ export default function Home() {
                     </div>
                     <div class="col-md-4 border-right">
                         <div class="cards wrap">
-                        <a id='link' href="/Statistique">
+                        <a id='link' href="/StatistiquePrinter">
                             <div class=" second p-4 text-center">
                                 <img src={image8} alt="stat" style={{ width: "26.8%" }} />
                                 <h5>Statistiques</h5>
