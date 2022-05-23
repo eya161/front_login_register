@@ -55,7 +55,7 @@ export default function Commande() {
                     <div class="row mb-1">
                         <nav aria-label="breadcrumb" class="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/Home">Acceuil</a></li>
+                                <li class="breadcrumb-item"><a href="/HomePrinter">Acceuil</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Commandes en Cours </li>
                             </ol>
                         </nav>

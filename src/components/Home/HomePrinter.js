@@ -45,11 +45,12 @@ export default function Home() {
                     </div>
                     <div class="col-md-4 border-right">
                         <div class="cards">
+                            <a id='link' href="/BATRefuserPrinter">
                             <div class="first p-4 text-center">
                                 <img src={image4} alt="refuser" style={{ width: "28.5%" }} />
                                 <h5>BAT Refusés</h5>
                                 <p class="line1">Détails</p>
-                            </div>
+                            </div></a>
                         </div>
                     </div>
                 </div>

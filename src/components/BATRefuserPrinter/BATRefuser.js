@@ -9,13 +9,13 @@ import Form from 'react-bootstrap/Form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-export default function CommandeEncours() {
+export default function BATRefuser() {
     const [commande, setcommande] = useState([])
     const navigate=useNavigate()
     const getCommandeData = async () => {
         try {
             const data = await axios.get(
-                "https://127.0.0.1:8000/getCommandesEnCourss"
+                "https://127.0.0.1:8000/getCommandeBATrefuse"
             );
             console.log(data.data);
             setcommande(data.data.commandes);
@@ -32,7 +32,7 @@ export default function CommandeEncours() {
                 'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
             },
         };
-        navigate(`/ValidationCommande/${id}`);
+        navigate(`/BATModifyPrinter/${id}`);
     }
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export default function CommandeEncours() {
                     <div class="row mb-1">
                         <nav aria-label="breadcrumb" class="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/Home">Acceuil</a></li>
+                                <li class="breadcrumb-item"><a href="/HomePrinter">Acceuil</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Liste des Commandes en Cours </li>
                             </ol>
                         </nav>
@@ -112,7 +112,6 @@ export default function CommandeEncours() {
                                         <th>Désignation</th>
                                         <th>Quantités</th>
                                         <th>Statut commande</th>
-                                        <th>N° commande</th>
                                         <th>Date d'impression</th>
                                         <th>RS de livraison</th>
                                         <th>Ville de livraison</th>
@@ -122,6 +121,9 @@ export default function CommandeEncours() {
                                 <tbody>
                                     {commande
                                        .map((item) => {
+                                           if (item.statut==3) {
+                                               item.statut=<b>BAT refusé</b>
+                                           }
                                         return(
                                     <tr key={item.id}>
                                         <td>{item.referencecommerciale}</td>
@@ -129,8 +131,7 @@ export default function CommandeEncours() {
                                         <td>{item.reference}</td>
                                         <td>{item.Designation}</td>
                                         <td>{item.quantite}</td>
-                                        <td><b>Attente Validation BAT</b></td>
-                                        <td>{item.referencecommerciale}</td>
+                                        <td>{item.statut}</td>
                                         <td>{item.dateimpression}</td>
                                         <td>{item.rslivraison}</td>
                                         <td>{item.villelivraison}</td>

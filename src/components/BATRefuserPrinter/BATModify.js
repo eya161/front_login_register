@@ -9,7 +9,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 
-export default function AddBAT() {
+export default function BATModify() {
     const { id } = useParams();
     const [form, setform] = useState({})
     const [commande, setcommande] = useState([])
@@ -28,10 +28,10 @@ export default function AddBAT() {
         e.preventDefault();
         data.append('fichierBAT',form.fichierBAT)
         try {
-            return axios.post(`https://127.0.0.1:8000/envoyerBAT/${id}`,
+            return axios.post(`https://127.0.0.1:8000/envoyerBATRefuse/${id}`,
                 data
             ),
-                navigate("/CommandeEnCoursPrinter"),
+                navigate("/BATRefuserPrinter"),
                 setError(false);
         } catch (error) {
             setError(error.response.data.message);
@@ -93,7 +93,7 @@ export default function AddBAT() {
                     <nav aria-label="breadcrumb" className="mb-5" style={{ marginTop: '15px', backgroundColor: '#c9def7be ' }}>
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><a href="/HomePrinter">Acceuil</a></li>
-                            <li className="breadcrumb-item"><a href="/CommandeEnCoursPrinter">Liste des Commandes en Cours</a></li>
+                            <li className="breadcrumb-item"><a href="/BATRefuserPrinter">Liste des Commandes en Cours</a></li>
                             <li className="breadcrumb-item active" aria-current="page">Détails</li>
                         </ol>
                     </nav>

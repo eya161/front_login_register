@@ -45,7 +45,7 @@ export default function Search() {
                             </Form.Select>
                         </div>
                         <div class="col-lg-1 ">
-                            <Button variant="primary" type="submit" className="button">
+                            <Button variant="primary" type="submit" className="button" style={{background: "#412e4ee1"}}>
                                 <FaSearch />
                             </Button>
                         </div>

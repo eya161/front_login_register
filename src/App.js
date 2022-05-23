@@ -48,6 +48,8 @@ import ConsulterImpression from './components/CommandeEncoursImpression/Consulte
 import CommandeEnCoursPrinter from './components/CommandeEnCoursPrinter/Commande';
 import StatistiquePrinter from './components/StatistiqueGMJ/StatistiquePrinter'
 import AddBAT from './components/CommandeEnCoursPrinter/AddBAT';
+import BATRefuser from './components/BATRefuserPrinter/BATRefuser';
+import BATModify from './components/BATRefuserPrinter/BATModify';
 
 function App() {
   return (
@@ -101,6 +103,8 @@ function App() {
           <Route path="/CommandeEnCoursPrinter" element={<CommandeEnCoursPrinter />} />
           <Route path="/StatistiquePrinter" element={<StatistiquePrinter />} />
           <Route path="/AddBAT/:id" element={<AddBAT />} />
+          <Route path="/BATRefuserPrinter" element={<BATRefuser />} />
+          <Route path="/BATModifyPrinter/:id" element={<BATModify />} />
           
         </Routes>      
     </Router>

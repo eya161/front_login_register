@@ -33,7 +33,7 @@ export default function ProduitSearch() {
                                     </Form.Group>
                                 </div>
                                 <div class="col-lg-1 ">
-                                    <Button variant="primary" type="submit" className="button"style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                                    <Button variant="primary" type="submit" className="button"style={{background: "#412e4ee1"}}>
                                         <FaSearch />
                                     </Button>
                                 </div>
@@ -42,7 +42,7 @@ export default function ProduitSearch() {
                     </div>
                     <div class="col-lg-3"></div>
                     <div class="col-lg-3">
-                        <Button variant="primary" type="submit" className="button" href='/ProdForum' style={{background: "linear-gradient(to right, rgb(98, 182, 203),rgb(0, 126, 167),rgb(27, 73, 101))"}}>
+                        <Button variant="primary" type="submit" className="button" href='/ProdForum' style={{background: "#412e4ee1"}}>
                             Ajouter un produit
                         </Button>
                     </div>

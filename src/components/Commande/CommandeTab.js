@@ -17,28 +17,32 @@ import Navbar from '../Sidebar/Navbar';
 
 export default function CommandeTab() {
 
-    const [commandes, setcommandes] = useState([])
+    const [commande, setcommande] = useState([])
     const getCommandeData = async () => {
         try {
-            const userInfo = localStorage.getItem("userInfo");
-            const config = {
-                headers: {
-                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-                },
-            };
-            console.log(config);
             const data = await axios.get(
-                "http://127.0.0.1:8000/api/commandes", config
+                "https://127.0.0.1:8000/getCommandesall"
             );
-            console.log(data);
-            setcommandes(data.data);
+            console.log(data.data);
+            setcommande(data.data.commandes);
         } catch (e) {
             console.log(e);
         }
     };
-    console.log(commandes)
-    console.log(commandes.quantite)
-
+   
+    const deleteData = async (id) => {
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        let data = await axios.delete(
+            `https://127.0.0.1:8000/api/commandes/${id}`, config
+        )
+        console.log(data)
+        window.location.reload()
+    }    
     // const deleteData = async (id) => {
     //     const userInfo = localStorage.getItem("userInfo");
     //     const config = {
@@ -81,64 +85,56 @@ export default function CommandeTab() {
                             </tr>
                         </thead>
                         <tbody>
-                            {commandes
+                        {commande
                                 .map((item) => {
-                                    if (item.statut === 0) {
-                                        item.statut = <BsCheckCircle style={{ color: 'green' }}></BsCheckCircle>
-                                    } else {
-                                        if (item.statut === 1) {
-                                            item.statut = <ImBlocked style={{ color: 'red' }}></ImBlocked>
-                                        }
+                                    if (item.statut == 10) {
+                                        item.statut = <b>Commande en cours</b>
+                                    }
+                                    if (item.statut == 1) {
+                                        item.statut = <b>Nouvelle commande</b>
+                                    }
+                                    if (item.statut == 2) {
+                                        item.statut = <b>En Attente de validation</b>
+                                    }
+                                    if (item.statut == 3) {
+                                        item.statut = <b>Bat réfusé</b>
+                                    }
+                                    if (item.statut == 4) {
+                                        item.statut = <b>Bat Accepté</b>
+                                    }
+                                    if (item.statut == 5) {
+                                        item.statut = <b>En cours d'impression</b>
+                                    }
+                                    if (item.statut == 6) {
+                                        item.statut = <b>En cours de livraison</b>
+                                    }
+                                    if (item.statut == 7) {
+                                        item.statut = <b>Facturation</b>
                                     }
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.updatedAt}</td>
-                                            <td>{item.reference_commerciale}</td>
+                                            <td>{item.createdAt}</td>
+                                            <td>{item.referencecommerciale}</td>
                                             <td>{item.quantite}</td>
-                                            <td>{item.RSfacturation}</td>
-                                            <td>{item.ville}</td>
-                                            <td></td>
-                                            <td>{item.designation}</td>
-                                            <td>{item.statut}</td>
-                                            <td></td>
+                                            <td>{item.rs_facturation}</td>
+                                            <td>{item.villelivraison}</td>
+                                            <td>{item.codeclient}</td>
+                                            <td>{item.reference}</td>
                                             <td>
-                                                <div class="container">
-                                                    <div class="row flex">
-                                                        <div class="col-lg-2 mb-1" >
-                                                            <Button variant="primary" type="details"  >
-                                                                <FcViewDetails />
-                                                            </Button>
-                                                        </div>
-                                                        <div class="col-lg-2 mb-1">
-                                                            <Button variant="danger" type="delete" style={{ marginLeft: '25px' }} /*onClick={() => deleteData(item.id)}*/>
-                                                                <RiDeleteBin5Line />
-                                                            </Button>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               {item.Designation}
                                             </td>
+                                          <td>{item.statut}</td>
+                                          <td>
+                                                <Button variant="danger" type="delete" style={{ marginLeft: '25px' }} onClick={()=>deleteData(item.id)}>
+                                                    <RiDeleteBin5Line />
+                                                </Button>
+                                            </td>                                          
                                         </tr>
                                     );
-                                })
-                            } 
+                                    })
+                            }
                         </tbody>
                     </Table>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-4 col-lg-4"></div>
-                    <div class="col-xs-4 col-lg-4" style={{ display: 'block', width: 700 }}>
-                        <Pagination>
-                            <Pagination.Prev />
-                            <Pagination.Ellipsis />
-                            <Pagination.Item>{1}</Pagination.Item>
-                            <Pagination.Item>{2}</Pagination.Item>
-                            <Pagination.Item>{3}</Pagination.Item>
-                            <Pagination.Ellipsis />
-                            <Pagination.Next />
-                        </Pagination>
-                    </div>
                 </div>
             </div>
         </div>

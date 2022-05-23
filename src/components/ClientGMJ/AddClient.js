@@ -104,7 +104,8 @@ export default function ClientForum() {
                     label: pays.label,
                 };
             });
-            setpays(pays);            
+            setpays(pays);
+            console.log(pays);            
 
         } catch (e) {
             console.log(e);

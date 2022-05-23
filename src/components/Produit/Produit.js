@@ -7,9 +7,7 @@ import Button from 'react-bootstrap/Button';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FcViewDetails } from "react-icons/fc";
 import '../Commande/CommandeTab.css';
-import Pagination from 'react-bootstrap/Pagination';
 import ProduitSearch from './ProduitSearch';
-import Sidebar from '../Sidebar/Sidebar';
 import { useNavigate } from 'react-router-dom';
 import { BsCheckCircle } from "react-icons/bs";
 import { ImBlocked } from "react-icons/im";
@@ -21,19 +19,11 @@ export default function Produit() {
     const navigate = useNavigate();
     const getProduitData = async () => {
         try {
-            const userInfo = localStorage.getItem("userInfo");
-            //  console.log(userInfo);
-            const config = {
-                headers: {
-                    'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
-                },
-            };
-            console.log(config);
             const data = await axios.get(
-                "https://127.0.0.1:8000/api/produits", config
+                "https://127.0.0.1:8000/getallproduit"
             );
             console.log(data.data);
-            setproduits(data.data);
+            setproduits(data.data.produits);
         } catch (e) {
             console.log(e);
         }
@@ -92,7 +82,7 @@ export default function Produit() {
                                             <td>{item.reference}</td>
                                             <td>{item.designation}</td>
                                             <td>{item.description}</td>
-                                            <td></td>
+                                            <td>{item.categorie}</td>
                                             <td>{item.statut}</td>
                                             <td>Admin</td>
                                             <td>{item.createdAt}</td>
