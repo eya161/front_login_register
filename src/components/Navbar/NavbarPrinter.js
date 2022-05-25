@@ -15,7 +15,7 @@ export default function NavbarUser() {
     const history = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('userInfo');
-        history("/LoginPage");
+        history("/LoginPrinter");
     };
     return (
         <Navbar collapseOnSelect expand="lg" variant="dark" style={{ marginTop: '-30px', background: '#004b88b6' }}>

@@ -50,6 +50,7 @@ import StatistiquePrinter from './components/StatistiqueGMJ/StatistiquePrinter'
 import AddBAT from './components/CommandeEnCoursPrinter/AddBAT';
 import BATRefuser from './components/BATRefuserPrinter/BATRefuser';
 import BATModify from './components/BATRefuserPrinter/BATModify';
+import AjoutCommande from './components/ClientGMJ/AjoutCommande';
 
 function App() {
   return (
@@ -105,6 +106,7 @@ function App() {
           <Route path="/AddBAT/:id" element={<AddBAT />} />
           <Route path="/BATRefuserPrinter" element={<BATRefuser />} />
           <Route path="/BATModifyPrinter/:id" element={<BATModify />} />
+          <Route path="/AjoutCommande/:id" element={<AjoutCommande />} />
           
         </Routes>      
     </Router>

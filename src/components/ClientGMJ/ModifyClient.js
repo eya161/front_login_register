@@ -11,7 +11,7 @@ import { FcViewDetails } from 'react-icons/fc';
 import { RiDeleteBin5Line } from 'react-icons/ri';
 import axios from 'axios';
 import { Table } from 'react-bootstrap';
-import {useParams} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 
 export default function ClientForum() {
     const [password, setpassword] = useState("");
@@ -19,7 +19,7 @@ export default function ClientForum() {
     const [message, setMessage] = useState("")
     const [error, setError] = useState("")
     const { id } = useParams();
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const [pays, setpays] = useState([])
     const [commande, setcommande] = useState([])
     const getPaysData = async () => {
@@ -73,6 +73,17 @@ export default function ClientForum() {
         } else {
             setMessage(null)
         }
+    }
+
+    const editCategory=async(id) => {
+        console.log(id);
+        const userInfo = localStorage.getItem("userInfo");
+        const config = {
+            headers: {
+                'Authorization': 'Bearer ' + userInfo.slice(10, userInfo.length - 2)
+            },
+        };
+        navigate(`/AjoutCommande/${id}`);
     }
 
     useEffect(() => {
@@ -524,7 +535,7 @@ export default function ClientForum() {
                                         <div class="container">
                                             <div class="row flex">
                                                 <div class="col-lg-2 mb-1" >
-                                                    <Button variant="primary" type="details"  >
+                                                    <Button variant="primary" type="details" onClick={ () => editCategory(item.id)} >
                                                         <FcViewDetails />
                                                     </Button>
                                                 </div>
